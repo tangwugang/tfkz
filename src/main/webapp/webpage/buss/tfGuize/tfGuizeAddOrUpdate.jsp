@@ -22,12 +22,12 @@
           <ul>
           <c:forEach items="${tfGuizeTimes}" var="times" varStatus="t">
           <c:choose>
-          <c:when test="${t.index == 0 }"><li class="first_time"><input type="text" class="in" name="tfGuiZeStartTime"  data-rule="time;"  value="${times.tfGuiZeStartTime}" /><label>至</label><input type="text" class="in" name="tfGuiZeEndTime" data-rule="time;" data-ok="" value="${times.tfGuiZeEndTime}"/></li></c:when>
+          <c:when test="${t.index == 0 }"><li class="first_time"><input type="text" class="in" name="tfGuiZeStartTime"  data-rule="required;time;"  value="${times.tfGuiZeStartTime}" /><label>至</label><input type="text" class="in" name="tfGuiZeEndTime" data-rule="required;time;" data-ok="" value="${times.tfGuiZeEndTime}"/></li></c:when>
           <c:otherwise><li><a href="javascript:;" title="删除时间段" class="del_time"></a><input type="text" class="in" name="tfGuiZeStartTime"  data-rule="time;"  value="${times.tfGuiZeStartTime}" /><label>至</label><input type="text" class="in" name="tfGuiZeEndTime" data-rule="time;" data-ok="" value="${times.tfGuiZeEndTime}"/></li></c:otherwise>
           </c:choose>
           </c:forEach>
           <c:if test="${tfGuizeTimes == null}">
-          	<li class="first_time"><input type="text" class="in" name="tfGuiZeStartTime"  data-rule="time;"  /><label>至</label><input type="text" class="in" name="tfGuiZeEndTime" data-rule="time;" data-ok="" /></li>
+          	<li class="first_time"><input type="text" class="in" name="tfGuiZeStartTime"  data-rule="required;time;"  /><label>至</label><input type="text" class="in" name="tfGuiZeEndTime" data-rule="required;time;" data-ok="" /></li>
           </c:if>
             <div class="clr"></div>
           </ul>

@@ -8,7 +8,7 @@ ul.ztree {margin-top: 10px;border: 1px solid #617775;background: #f0f6e4;width:2
 <div class="wrapper2">
 <div class="main">
    <div style="height:10px"></div>
-<form id="inputFrom" method="post">
+<form id="inputFrom" method="post" data-validator-option="{theme:'yellow_right_effect',stopOnError:true,timely:2}">
    <c:if test="${null != tfGuize.id}"><input type="hidden" name="tfGuiZeId" value="${tfGuize.id}"/></c:if>
     <div class="top_box2">
       <div class="name">

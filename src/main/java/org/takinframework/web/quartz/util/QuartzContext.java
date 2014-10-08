@@ -7,6 +7,7 @@ import org.quartz.Job;
 import org.quartz.SchedulerException;
 import org.takinframework.core.quartz.QuartzManager;
 import org.takinframework.core.quartz.TriggerTime;
+import org.takinframework.core.util.StringUtil;
 import org.takinframework.web.buss.entity.TfGuizeTimes;
 import org.takinframework.web.buss.job.DepotJob;
 import org.takinframework.web.buss.job.BrowserJob;
@@ -34,8 +35,12 @@ public class QuartzContext {
 		List<TriggerTime> triggerTimes = Lists.newLinkedList();
 		List<String> times = Lists.newLinkedList();
 		for (int i = 0; i < tfGuizeTimes.size(); i++) {
-			times.add(tfGuizeTimes.get(i).getTfGuiZeStartTime());
-			times.add(tfGuizeTimes.get(i).getTfGuiZeEndTime());
+			if(StringUtil.isNotBlank(tfGuizeTimes.get(i).getTfGuiZeStartTime())){
+				times.add(tfGuizeTimes.get(i).getTfGuiZeStartTime());
+			}
+			if(StringUtil.isNotBlank(tfGuizeTimes.get(i).getTfGuiZeEndTime())){
+				times.add(tfGuizeTimes.get(i).getTfGuiZeEndTime());
+			}
 		}
 		for (int i = 0; i < times.size(); i++) {
 			TriggerTime time = new TriggerTime();
