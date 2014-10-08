@@ -32,7 +32,7 @@ public class InstantiationQuartzProcessor implements
 	public void startJob() throws SchedulerException, ParseException {
 		if (!isStart) {// 没有父容器时说明它是最大的
 			isStart = true;
-			LogUtil.debug("=======定时任务开始启动=======");
+			LogUtil.info("=======定时任务开始启动=======");
 
 			List<TfGuize> tfGuizes = systemService.findAll(TfGuize.class,
 					"methord1");
