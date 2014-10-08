@@ -1,0 +1,28 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>三温图</title>
+<style type="text/css">
+body{text-align:center;margin:0px;padding:0px;}
+.table_center{ width:1200px;border:1px #333 solid;font-size:15px;}
+h1{ text-align:center; font-family:"微软雅黑"; font-weight:normal;}
+.table_center table{ border-left:1px #333 solid;border-top:1px #333 solid;width:1200px; }
+.table_center table td{ border-right:1px #333 solid;border-bottom:1px #333 solid; padding:0 5px;}
+.table_center table td label{ float:right;}
+.tab_out{ height:40px; line-height:40px; width:1200px;}
+.tab_out table{ border:none;width:1200px;}
+.out_left{ text-align:left;width:30%;}
+.out_right{ float:right;width:30%}
+.out_mid{ margin-left:400px; float:left;width:30%}
+</style>
+</head>
+<body>
+<h1>三温图</h1>
+<input name="image" type="image" src="${imgName}" align="top" width="180" height="180" />
+</body>
+</html>

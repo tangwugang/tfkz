@@ -1,0 +1,159 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>机械通风记录</title>
+<style type="text/css">
+body{text-align:center;margin:0px;padding:0px;}
+.table_center{ width:1200px;border:1px #333 solid;font-size:15px;}
+h1{ text-align:center; font-family:"微软雅黑"; font-weight:normal;}
+.table_center table{ border-left:1px #333 solid;border-top:1px #333 solid;width:1200px; }
+.table_center table td{ border-right:1px #333 solid;border-bottom:1px #333 solid; padding:0 5px;}
+.table_center table td label{ float:right;}
+.tab_out{ height:40px; line-height:40px; width:1200px;}
+.tab_out table{ border:none;width:1200px;}
+.out_left{ text-align:left;width:30%;}
+.out_right{ float:right;width:30%}
+.out_mid{ margin-left:400px; float:left;width:30%}
+</style>
+</head>
+<body>
+<h1>机械通风记录</h1>
+<div class="tab_out">
+   <table align=center  style="border-collapse:collapse; width:551.5000pt; margin-left:201.0000pt; padding:0.0000pt 0.0000pt 0.0000pt 0.0000pt ; ">
+   <tr>
+     <td height="40" width="30%">填制日期：${createDate!}</td><td></td>
+   </tr>
+   </table>   
+</div>
+<div class="table_center">
+        <table  align=center  style="border-collapse:collapse; width:551.5000pt; margin-left:201.0000pt; padding:0.0000pt 0.0000pt 0.0000pt 0.0000pt ; ">
+         <tr>
+           <td height="35" width="30%" colspan="2">粮食品种</td>
+           <td colspan="2" width="20%">${tfBarnShiwu.liaShiPinZh!}</td>
+           <td colspan="2" width="30%">实际数量（t）</td>
+           <td width="20%">${tfBarnShiwu.number!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">通风目的</td>
+           <td colspan="2" width="20%">${tfMuDi!}</td>
+           <td colspan="2" width="30%">堆粮高度（m）</td>
+           <td width="20%">${tfMachine.duiLianGaoDu!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">堆粮体积（m³）</td>
+           <td colspan="2" width="20%">${tfMachine.lianDuiVol!}</td>
+           <td colspan="2" width="30%">风机型号</td>
+           <td width="20%">${version!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">风机功率（KW）</td>
+           <td colspan="2" width="20%">${power!}</td>
+           <td colspan="2" width="30%">风机数量（台）</td>
+           <td width="20%">${num!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">总风量（m³/h）</td>
+           <td colspan="2" width="20%">${tfMachine.zonFenLia!}</td>
+           <td colspan="2" width="30%">风道类型</td>
+           <td width="20%">${tfBarn.fenDaoType!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">风网布置</td>
+           <td colspan="2" width="20%">${tfMachine.fenWanBuZhi!}</td>
+           <td colspan="2" width="30%">风道数量（条）</td>
+           <td width="20%">${tfMachine.fenDaoNum!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">风道间距（m）</td>
+           <td colspan="2" width="20%">${tfMachine.fenDaoStep!}</td>
+           <td colspan="2" width="30%">单位通风量（m³/h.t）</td>
+           <td width="20%">${tfMachine.unitTonFenVol!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">通风方式（吸/压）</td>
+           <td colspan="2" width="20%">${tfMachine.cfMode!}</td>
+           <td colspan="2" width="30%">空气途径比</td>
+           <td width="20%">${tfMachine.konQiTuJinBi!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2">开始通风时间</td>
+           <td colspan="2" width="20%">${tfMachine.stTonFenTime!}</td>
+           <td colspan="2" width="30%">停止通风时间</td>
+           <td width="20%">${tfMachine.enTonFenTime!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="30%" colspan="2" style="border-right: none">累计通风时间（h）</td>
+           <td colspan="5">${tfMachine.tonFenTime!}</td>
+         </tr>
+         <tr>
+           <td height="35" width="30%" colspan="2">通风期间参数</td>
+           <td colspan="2" width="20%">最高值</td>
+           <td colspan="2" width="30%">最低值</td>
+           <td width="20%">平均值</td>
+         </tr>
+         <tr>
+           <td height="35" width="30%" colspan="2">大气温度（℃）</td>
+           <td colspan="2" width="20%">${tfMachine.daQiWenDuHi!}</td>
+           <td colspan="2" width="30%">${tfMachine.daQiWenDuLo!}</td>
+           <td width="20%">${tfMachine.daQiWenDuAv!}</td>
+         </tr>
+         <tr>
+           <td height="35" width="30%" colspan="2">大气湿度（RH%）</td>
+           <td colspan="2" width="20%">${tfMachine.daQiShiDuHi!}</td>
+           <td colspan="2" width="30%">${tfMachine.daQiShiDuLo!}</td>
+           <td width="20%">${tfMachine.daQiShiDuAv!}</td>
+         </tr>
+         <tr>
+           <td width="12%" rowspan="2" >粮食温度（℃）</td>
+           <td width="8%" height="35">通风前</td>
+           <td colspan="2" width="20%">${tfMachine.liaWenStartHi!}</td>
+           <td colspan="2" width="20%">${tfMachine.liaWenStartLo!}</td>
+           <td width="20%">${tfMachine.liaWenStartAv!}</td>
+         </tr>
+         <tr>
+           <td width="8%" height="35">通风后</td>
+           <td colspan="2" width="20%">${tfMachine.liaWenEndHi!}</td>
+           <td colspan="2" width="20%">${tfMachine.liaWenEndLo!}</td>
+           <td width="20%">${tfMachine.liaWenEndAv!}</td>
+         </tr>
+         <tr>
+           <td width="12%" rowspan="2" >粮食水份（%）</td>
+           <td width="8%" height="35">通风前</td>
+           <td colspan="2" width="20%">${tfMachine.suiFenStartHi!}</td>
+           <td colspan="2" width="20%">${tfMachine.suiFenStartLo!}</td>
+           <td width="20%">${tfMachine.suiFenStartAv!}</td>
+         </tr>
+         <tr>
+           <td width="5%" height="35">通风后</td>
+           <td colspan="2" width="20%">${tfMachine.suiFenEndHi!}</td>
+           <td colspan="2" width="20%">${tfMachine.suiFenEndLo!}</td>
+           <td width="20%">${tfMachine.suiFenEndAv!}</td>
+         </tr>
+         <tr>
+           <td height="35" width="30%" colspan="2">总电耗（kW.h）</td>
+           <td colspan="2" width="20%">${tfMachine.power!}</td>
+           <td colspan="2" width="30%">单位能耗（kw·h/℃·t或kw·h/l%水分·t）</td>
+           <td width="20%">${tfMachine.unitPower!}</td>
+         </tr>
+         <tr>
+           <td height="35" width="30%" colspan="2">备注</td>
+           <td  colspan="5">${tfMachine.beiZhui!}</td>
+         </tr>
+         </table>
+ </div>
+ <div class="tab_out">
+   <table align=center   style="border-collapse:collapse; width:551.5000pt; margin-left:201.0000pt; padding:0.0000pt 0.0000pt 0.0000pt 0.0000pt ; ">
+   <tr>
+     <td height="40" width="30%" align="left">仓储部负责人：</td>
+     <td  width="30%">操作人员：${user.realName!}</td>
+     <td  width="30%" >保管员：${user.realName!}</td> 
+   </tr>
+   </table> 
+ </div>
+</body>
+</html>

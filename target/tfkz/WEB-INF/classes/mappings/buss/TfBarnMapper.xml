@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.takinframework.web.buss.mapper.TfBarnMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.takinframework.web.buss.entity.TfBarn" >
+	<result column="id" property="id"/>
+	<result column="createBy" property="createBy"/>
+	<result column="createName" property="createName"/>
+	<result column="createDate" property="createDate"/>
+	<result column="updateDate" property="updateDate"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="updateName" property="updateName"/>
+	<result column="barnType" property="barnType"/>
+	<result column="barnNo" property="barnNo"/>
+	<result column="qiDoTime" property="qiDoTime"/>
+	<result column="jieGou" property="jieGou"/>
+	<result column="duiLianHeight" property="duiLianHeight"/>
+	<result column="duiLianArea" property="duiLianArea"/>
+	<result column="canMenNum" property="canMenNum"/>
+	<result column="area" property="area"/>
+	<result column="tonCaWaiJ" property="tonCaWaiJ"/>
+	<result column="canMenHeight" property="canMenHeight"/>
+	<result column="yanGao" property="yanGao"/>
+	<result column="tonCaNeiJ" property="tonCaNeiJ"/>
+	<result column="canMenKuanD" property="canMenKuanD"/>
+	<result column="sheJiVol" property="sheJiVol"/>
+	<result column="tonNeiVol" property="tonNeiVol"/>
+	<result column="fenDaoType" property="fenDaoType"/>
+	<result column="heDinVol" property="heDinVol"/>
+	<result column="tonFenKoNum" property="tonFenKoNum"/>
+	<result column="shiCaQiMiX" property="shiCaQiMiX"/>
+	<result column="fenJiNum" property="fenJiNum"/>
+	<result column="geReCuoS" property="geReCuoS"/>
+	<result column="liaCaType" property="liaCaType"/>
+</resultMap>
+       
+<!-- tf_barn table all fields -->
+<sql id="Base_Column_List" >
+	 id,createBy,createName,createDate,updateDate,updateBy,updateName,barnType,barnNo,qiDoTime,jieGou,duiLianHeight,duiLianArea,canMenNum,area,tonCaWaiJ,canMenHeight,yanGao,tonCaNeiJ,canMenKuanD,sheJiVol,tonNeiVol,fenDaoType,heDinVol,tonFenKoNum,shiCaQiMiX,fenJiNum,geReCuoS,liaCaType
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	where 1=1
+ 	<trim  suffixOverrides="and|or" >
+	<if test="createBy != null  and createBy != '' ">
+		 and createBy=#{createBy}
+	</if>
+	<if test="createName != null  and createName != '' ">
+		 and createName=#{createName}
+	</if>
+	<if test="createDate != null  ">
+		 and createDate=#{createDate}
+	</if>
+	<if test="updateDate != null  ">
+		 and updateDate=#{updateDate}
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		 and updateBy=#{updateBy}
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		 and updateName=#{updateName}
+	</if>
+	<if test="barnType != null  and barnType != '' ">
+		 and barnType=#{barnType}
+	</if>
+	<if test="barnNo != null  and barnNo != '' ">
+		 and barnNo=#{barnNo}
+	</if>
+	<if test="qiDoTime != null  ">
+		 and qiDoTime=#{qiDoTime}
+	</if>
+	<if test="jieGou != null  and jieGou != '' ">
+		 and jieGou=#{jieGou}
+	</if>
+	<if test="duiLianHeight != null  ">
+		 and duiLianHeight=#{duiLianHeight}
+	</if>
+	<if test="duiLianArea != null  ">
+		 and duiLianArea=#{duiLianArea}
+	</if>
+	<if test="canMenNum != null  ">
+		 and canMenNum=#{canMenNum}
+	</if>
+	<if test="area != null  ">
+		 and area=#{area}
+	</if>
+	<if test="tonCaWaiJ != null  ">
+		 and tonCaWaiJ=#{tonCaWaiJ}
+	</if>
+	<if test="canMenHeight != null  ">
+		 and canMenHeight=#{canMenHeight}
+	</if>
+	<if test="yanGao != null  ">
+		 and yanGao=#{yanGao}
+	</if>
+	<if test="tonCaNeiJ != null  ">
+		 and tonCaNeiJ=#{tonCaNeiJ}
+	</if>
+	<if test="canMenKuanD != null  ">
+		 and canMenKuanD=#{canMenKuanD}
+	</if>
+	<if test="sheJiVol != null  ">
+		 and sheJiVol=#{sheJiVol}
+	</if>
+	<if test="tonNeiVol != null  ">
+		 and tonNeiVol=#{tonNeiVol}
+	</if>
+	<if test="fenDaoType != null  and fenDaoType != '' ">
+		 and fenDaoType=#{fenDaoType}
+	</if>
+	<if test="heDinVol != null  ">
+		 and heDinVol=#{heDinVol}
+	</if>
+	<if test="tonFenKoNum != null  ">
+		 and tonFenKoNum=#{tonFenKoNum}
+	</if>
+	<if test="shiCaQiMiX != null  ">
+		 and shiCaQiMiX=#{shiCaQiMiX}
+	</if>
+	<if test="fenJiNum != null  ">
+		 and fenJiNum=#{fenJiNum}
+	</if>
+	<if test="geReCuoS != null  and geReCuoS != '' ">
+		 and geReCuoS=#{geReCuoS}
+	</if>
+	<if test="liaCaType != null  and liaCaType != '' ">
+		 and liaCaType=#{liaCaType}
+	</if>
+	</trim>
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from tf_barn
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  insert into tf_barn(id,createBy,createName,createDate,updateDate,updateBy,updateName,barnType,barnNo,qiDoTime,jieGou,duiLianHeight,duiLianArea,canMenNum,area,tonCaWaiJ,canMenHeight,yanGao,tonCaNeiJ,canMenKuanD,sheJiVol,tonNeiVol,fenDaoType,heDinVol,tonFenKoNum,shiCaQiMiX,fenJiNum,geReCuoS,liaCaType)
+ values(#{id},#{createBy},#{createName},now(),now(),#{updateBy},#{updateName},#{barnType},#{barnNo},#{qiDoTime},#{jieGou},#{duiLianHeight},#{duiLianArea},#{canMenNum},#{area},#{tonCaWaiJ},#{canMenHeight},#{yanGao},#{tonCaNeiJ},#{canMenKuanD},#{sheJiVol},#{tonNeiVol},#{fenDaoType},#{heDinVol},#{tonFenKoNum},#{shiCaQiMiX},#{fenJiNum},#{geReCuoS},#{liaCaType})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update tf_barn set createBy=#{createBy},createName=#{createName},createDate=#{createDate},updateDate=now(),updateBy=#{updateBy},updateName=#{updateName},barnType=#{barnType},barnNo=#{barnNo},qiDoTime=#{qiDoTime},jieGou=#{jieGou},duiLianHeight=#{duiLianHeight},duiLianArea=#{duiLianArea},canMenNum=#{canMenNum},area=#{area},tonCaWaiJ=#{tonCaWaiJ},canMenHeight=#{canMenHeight},yanGao=#{yanGao},tonCaNeiJ=#{tonCaNeiJ},canMenKuanD=#{canMenKuanD},sheJiVol=#{sheJiVol},tonNeiVol=#{tonNeiVol},fenDaoType=#{fenDaoType},heDinVol=#{heDinVol},tonFenKoNum=#{tonFenKoNum},shiCaQiMiX=#{shiCaQiMiX},fenJiNum=#{fenJiNum},geReCuoS=#{geReCuoS},liaCaType=#{liaCaType} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update tf_barn set 
+	<trim  suffixOverrides="," >
+	<if test="createBy != null  and createBy != '' ">
+		createBy=#{createBy},
+	</if>
+	<if test="createName != null  and createName != '' ">
+		createName=#{createName},
+	</if>
+	<if test="createDate != null  ">
+		createDate=#{createDate},
+	</if>
+	<if test="updateDate != null  ">
+		updateDate=#{updateDate},
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		updateName=#{updateName},
+	</if>
+	<if test="barnType != null  and barnType != '' ">
+		barnType=#{barnType},
+	</if>
+	<if test="barnNo != null  and barnNo != '' ">
+		barnNo=#{barnNo},
+	</if>
+	<if test="qiDoTime != null  ">
+		qiDoTime=#{qiDoTime},
+	</if>
+	<if test="jieGou != null  and jieGou != '' ">
+		jieGou=#{jieGou},
+	</if>
+	<if test="duiLianHeight != null  ">
+		duiLianHeight=#{duiLianHeight},
+	</if>
+	<if test="duiLianArea != null  ">
+		duiLianArea=#{duiLianArea},
+	</if>
+	<if test="canMenNum != null  ">
+		canMenNum=#{canMenNum},
+	</if>
+	<if test="area != null  ">
+		area=#{area},
+	</if>
+	<if test="tonCaWaiJ != null  ">
+		tonCaWaiJ=#{tonCaWaiJ},
+	</if>
+	<if test="canMenHeight != null  ">
+		canMenHeight=#{canMenHeight},
+	</if>
+	<if test="yanGao != null  ">
+		yanGao=#{yanGao},
+	</if>
+	<if test="tonCaNeiJ != null  ">
+		tonCaNeiJ=#{tonCaNeiJ},
+	</if>
+	<if test="canMenKuanD != null  ">
+		canMenKuanD=#{canMenKuanD},
+	</if>
+	<if test="sheJiVol != null  ">
+		sheJiVol=#{sheJiVol},
+	</if>
+	<if test="tonNeiVol != null  ">
+		tonNeiVol=#{tonNeiVol},
+	</if>
+	<if test="fenDaoType != null  and fenDaoType != '' ">
+		fenDaoType=#{fenDaoType},
+	</if>
+	<if test="heDinVol != null  ">
+		heDinVol=#{heDinVol},
+	</if>
+	<if test="tonFenKoNum != null  ">
+		tonFenKoNum=#{tonFenKoNum},
+	</if>
+	<if test="shiCaQiMiX != null  ">
+		shiCaQiMiX=#{shiCaQiMiX},
+	</if>
+	<if test="fenJiNum != null  ">
+		fenJiNum=#{fenJiNum},
+	</if>
+	<if test="geReCuoS != null  and geReCuoS != '' ">
+		geReCuoS=#{geReCuoS},
+	</if>
+	<if test="liaCaType != null  and liaCaType != '' ">
+		liaCaType=#{liaCaType},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	delete 	 from tf_barn where id = #{id}
+</delete>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from tf_barn 
+	<include refid="Example_Where_Clause"/>
+</delete>
+ 
+<!-- 根据id查询 tf_barn -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from tf_barn where id = #{id}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from tf_barn 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_barn 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectAll" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_barn
+</select>
+
+<!-- tf_barn 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from tf_barn 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询tf_barn列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_barn 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

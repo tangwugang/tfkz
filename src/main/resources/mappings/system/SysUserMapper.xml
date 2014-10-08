@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.takinframework.web.system.mapper.SysUserMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.takinframework.web.system.entity.SysUser" >
+	<result column="id" property="id"/>
+	<result column="createBy" property="createBy"/>
+	<result column="createName" property="createName"/>
+	<result column="createDate" property="createDate"/>
+	<result column="updateDate" property="updateDate"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="updateName" property="updateName"/>
+	<result column="userName" property="userName"/>
+	<result column="realName" property="realName"/>
+	<result column="userKey" property="userKey"/>
+	<result column="password" property="password"/>
+	<result column="activitiSync" property="activitiSync"/>
+	<result column="status" property="status"/>
+	<result column="signature" property="signature"/>
+	<result column="signatureFile" property="signatureFile"/>
+	<result column="mobilePhone" property="mobilePhone"/>
+	<result column="officePhone" property="officePhone"/>
+	<result column="email" property="email"/>
+	<result column="idCard" property="idCard"/>
+	<result column="sex" property="sex"/>
+</resultMap>
+       
+<!-- sys_user table all fields -->
+<sql id="Base_Column_List" >
+	 id,createBy,createName,createDate,updateDate,updateBy,updateName,userName,realName,userKey,password,activitiSync,status,signature,signatureFile,mobilePhone,officePhone,email,idCard,sex
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	where 1=1
+ 	<trim  suffixOverrides="and|or" >
+	<if test="createBy != null  and createBy != '' ">
+		 and createBy=#{createBy}
+	</if>
+	<if test="createName != null  and createName != '' ">
+		 and createName=#{createName}
+	</if>
+	<if test="createDate != null  ">
+		 and createDate=#{createDate}
+	</if>
+	<if test="updateDate != null  ">
+		 and updateDate=#{updateDate}
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		 and updateBy=#{updateBy}
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		 and updateName=#{updateName}
+	</if>
+	<if test="userName != null  and userName != '' ">
+		 and userName=#{userName}
+	</if>
+	<if test="realName != null  and realName != '' ">
+		 and realName=#{realName}
+	</if>
+	<if test="userKey != null  and userKey != '' ">
+		 and userKey=#{userKey}
+	</if>
+	<if test="password != null  and password != '' ">
+		 and password=#{password}
+	</if>
+	<if test="activitiSync != null  ">
+		 and activitiSync=#{activitiSync}
+	</if>
+	<if test="status != null  ">
+		 and status=#{status}
+	</if>
+	<if test="signature != null  ">
+		 and signature=#{signature}
+	</if>
+	<if test="signatureFile != null  and signatureFile != '' ">
+		 and signatureFile=#{signatureFile}
+	</if>
+	<if test="mobilePhone != null  and mobilePhone != '' ">
+		 and mobilePhone=#{mobilePhone}
+	</if>
+	<if test="officePhone != null  and officePhone != '' ">
+		 and officePhone=#{officePhone}
+	</if>
+	<if test="email != null  and email != '' ">
+		 and email=#{email}
+	</if>
+	<if test="idCard != null  and idCard != '' ">
+		 and idCard=#{idCard}
+	</if>
+	<if test="sex != null  ">
+		 and sex=#{sex}
+	</if>
+	</trim>
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_user
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  insert into sys_user(id,createBy,createName,createDate,updateDate,updateBy,updateName,userName,realName,userKey,password,activitiSync,status,signature,signatureFile,mobilePhone,officePhone,email,idCard,sex)
+ values(#{id},#{createBy},#{createName},now(),now(),#{updateBy},#{updateName},#{userName},#{realName},#{userKey},#{password},#{activitiSync},#{status},#{signature},#{signatureFile},#{mobilePhone},#{officePhone},#{email},#{idCard},#{sex})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update sys_user set createBy=#{createBy},createName=#{createName},createDate=#{createDate},updateDate=now(),updateBy=#{updateBy},updateName=#{updateName},userName=#{userName},realName=#{realName},userKey=#{userKey},password=#{password},activitiSync=#{activitiSync},status=#{status},signature=#{signature},signatureFile=#{signatureFile},mobilePhone=#{mobilePhone},officePhone=#{officePhone},email=#{email},idCard=#{idCard},sex=#{sex} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_user set 
+	<trim  suffixOverrides="," >
+	<if test="createBy != null  and createBy != '' ">
+		createBy=#{createBy},
+	</if>
+	<if test="createName != null  and createName != '' ">
+		createName=#{createName},
+	</if>
+	<if test="createDate != null  ">
+		createDate=#{createDate},
+	</if>
+	<if test="updateDate != null  ">
+		updateDate=#{updateDate},
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		updateName=#{updateName},
+	</if>
+	<if test="userName != null  and userName != '' ">
+		userName=#{userName},
+	</if>
+	<if test="realName != null  and realName != '' ">
+		realName=#{realName},
+	</if>
+	<if test="userKey != null  and userKey != '' ">
+		userKey=#{userKey},
+	</if>
+	<if test="password != null  and password != '' ">
+		password=#{password},
+	</if>
+	<if test="activitiSync != null  ">
+		activitiSync=#{activitiSync},
+	</if>
+	<if test="status != null  ">
+		status=#{status},
+	</if>
+	<if test="signature != null  ">
+		signature=#{signature},
+	</if>
+	<if test="signatureFile != null  and signatureFile != '' ">
+		signatureFile=#{signatureFile},
+	</if>
+	<if test="mobilePhone != null  and mobilePhone != '' ">
+		mobilePhone=#{mobilePhone},
+	</if>
+	<if test="officePhone != null  and officePhone != '' ">
+		officePhone=#{officePhone},
+	</if>
+	<if test="email != null  and email != '' ">
+		email=#{email},
+	</if>
+	<if test="idCard != null  and idCard != '' ">
+		idCard=#{idCard},
+	</if>
+	<if test="sex != null  ">
+		sex=#{sex},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	delete 	 from sys_user where id = #{id}
+</delete>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_user 
+	<include refid="Example_Where_Clause"/>
+</delete>
+ 
+<!-- 根据id查询 sys_user -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_user where id = #{id}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_user 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="select" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_user
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_user 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_user 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询sys_user列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_user 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

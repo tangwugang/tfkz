@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.takinframework.web.system.mapper.SysFunctionMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.takinframework.web.system.entity.SysFunction" >
+	<result column="id" property="id"/>
+	<result column="createBy" property="createBy"/>
+	<result column="createName" property="createName"/>
+	<result column="createDate" property="createDate"/>
+	<result column="updateDate" property="updateDate"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="updateName" property="updateName"/>
+	<result column="funcName" property="funcName"/>
+	<result column="funcAlias" property="funcAlias"/>
+	<result column="parentId" property="parentId"/>
+	<result column="funcUrl" property="funcUrl"/>
+	<result column="icon" property="icon"/>
+	<result column="funcOrder" property="funcOrder"/>
+	<result column="isShow" property="isShow"/>
+	<result column="isFolder" property="isFolder"/>
+	<result column="isOpen" property="isOpen"/>
+	<result column="funcLevel" property="funcLevel"/>
+	<result column="funcIframe" property="funcIframe"/>
+	<result column="operate" property="operate"/>
+</resultMap>
+       
+<!-- sys_function table all fields -->
+<sql id="Base_Column_List" >
+	 id,createBy,createName,createDate,updateDate,updateBy,updateName,funcName,funcAlias,parentId,funcUrl,icon,funcOrder,isShow,isFolder,isOpen,funcLevel,funcIframe,operate
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	where 1=1
+ 	<trim  suffixOverrides="and|or" >
+	<if test="createBy != null  and createBy != '' ">
+		 and createBy=#{createBy}
+	</if>
+	<if test="createName != null  and createName != '' ">
+		 and createName=#{createName}
+	</if>
+	<if test="createDate != null  ">
+		 and createDate=#{createDate}
+	</if>
+	<if test="updateDate != null  ">
+		 and updateDate=#{updateDate}
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		 and updateBy=#{updateBy}
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		 and updateName=#{updateName}
+	</if>
+	<if test="funcName != null  and funcName != '' ">
+		 and funcName=#{funcName}
+	</if>
+	<if test="funcAlias != null  and funcAlias != '' ">
+		 and funcAlias=#{funcAlias}
+	</if>
+	<if test="parentId != null  and parentId != '' ">
+		 and parentId=#{parentId}
+	</if>
+	<if test="funcUrl != null  and funcUrl != '' ">
+		 and funcUrl=#{funcUrl}
+	</if>
+	<if test="icon != null  and icon != '' ">
+		 and icon=#{icon}
+	</if>
+	<if test="funcOrder != null  ">
+		 and funcOrder=#{funcOrder}
+	</if>
+	<if test="isShow != null  ">
+		 and isShow=#{isShow}
+	</if>
+	<if test="isFolder != null  ">
+		 and isFolder=#{isFolder}
+	</if>
+	<if test="isOpen != null  ">
+		 and isOpen=#{isOpen}
+	</if>
+	<if test="funcLevel != null  ">
+		 and funcLevel=#{funcLevel}
+	</if>
+	<if test="funcIframe != null  and funcIframe != '' ">
+		 and funcIframe=#{funcIframe}
+	</if>
+	<if test="operate != null  and operate != '' ">
+		 and operate=#{operate}
+	</if>
+	</trim>
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_function
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  insert into sys_function(id,createBy,createName,createDate,updateDate,updateBy,updateName,funcName,funcAlias,parentId,funcUrl,icon,funcOrder,isShow,isFolder,isOpen,funcLevel,funcIframe,operate)
+ values(#{id},#{createBy},#{createName},now(),now(),#{updateBy},#{updateName},#{funcName},#{funcAlias},#{parentId},#{funcUrl},#{icon},#{funcOrder},#{isShow},#{isFolder},#{isOpen},#{funcLevel},#{funcIframe},#{operate})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update sys_function set createBy=#{createBy},createName=#{createName},createDate=#{createDate},updateDate=now(),updateBy=#{updateBy},updateName=#{updateName},funcName=#{funcName},funcAlias=#{funcAlias},parentId=#{parentId},funcUrl=#{funcUrl},icon=#{icon},funcOrder=#{funcOrder},isShow=#{isShow},isFolder=#{isFolder},isOpen=#{isOpen},funcLevel=#{funcLevel},funcIframe=#{funcIframe},operate=#{operate} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_function set 
+	<trim  suffixOverrides="," >
+	<if test="createBy != null  and createBy != '' ">
+		createBy=#{createBy},
+	</if>
+	<if test="createName != null  and createName != '' ">
+		createName=#{createName},
+	</if>
+	<if test="createDate != null  ">
+		createDate=#{createDate},
+	</if>
+	<if test="updateDate != null  ">
+		updateDate=#{updateDate},
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		updateName=#{updateName},
+	</if>
+	<if test="funcName != null  and funcName != '' ">
+		funcName=#{funcName},
+	</if>
+	<if test="funcAlias != null  and funcAlias != '' ">
+		funcAlias=#{funcAlias},
+	</if>
+	<if test="parentId != null  and parentId != '' ">
+		parentId=#{parentId},
+	</if>
+	<if test="funcUrl != null  and funcUrl != '' ">
+		funcUrl=#{funcUrl},
+	</if>
+	<if test="icon != null  and icon != '' ">
+		icon=#{icon},
+	</if>
+	<if test="funcOrder != null  ">
+		funcOrder=#{funcOrder},
+	</if>
+	<if test="isShow != null  ">
+		isShow=#{isShow},
+	</if>
+	<if test="isFolder != null  ">
+		isFolder=#{isFolder},
+	</if>
+	<if test="isOpen != null  ">
+		isOpen=#{isOpen},
+	</if>
+	<if test="funcLevel != null  ">
+		funcLevel=#{funcLevel},
+	</if>
+	<if test="funcIframe != null  and funcIframe != '' ">
+		funcIframe=#{funcIframe},
+	</if>
+	<if test="operate != null  and operate != '' ">
+		operate=#{operate},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	delete 	 from sys_function where id = #{id}
+</delete>
+ 
+<!-- 根据id查询 sys_function -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_function where id = #{id}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_function 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- sys_function 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_function 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询sys_function列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_function 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

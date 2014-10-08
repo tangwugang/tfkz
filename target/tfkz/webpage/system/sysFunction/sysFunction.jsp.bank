@@ -1,0 +1,158 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<%@include file="/context/mytags.jsp"%>
+<head>
+<title>${fns:getSysName('productName')}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<t:base type="jquery,ligerui"></t:base>
+<!-- <link rel="stylesheet" href="plug-in/Validform/css/divfrom.css" type="text/css"/> -->
+<link rel="stylesheet" href="plug-in/Validform/css/style.css" type="text/css"/>
+<!-- <link rel="stylesheet" href="plug-in/Validform/css/tablefrom.css" type="text/css"/> -->
+<script type="text/javascript" src="plug-in/Validform/js/Validform_v5.3.1_min.js"></script>
+<script type="text/javascript">
+		
+	$(function() {
+		$(".dataForm").Validform({
+			tiptype:4,
+			btnSubmit:"#dataFormSave", 
+			ajaxPost:true,
+			callback:function(data){
+				if(data.success==true){
+					parent.reFresh();
+					if(data.obj.operate == "add"){
+						$.ligerDialog.confirm(data.msg, '提示信息',
+								function (yes) {
+									if(yes == true){
+										$(".dataForm")[0].reset();
+									}else{
+										location.href= "sysFunctionController.do?addorupdate&operate=edit&id="+data.obj.id;
+									}
+									
+									
+								}
+							);
+					}else{
+						$.ligerDialog.success(data.msg,'提示信息');
+					}
+					
+				}
+			}
+			
+		});
+	});
+	var win;
+	function selectIcon(){
+		if (win) {
+			win.show();
+		}else{
+			win = $.ligerDialog.open({ 
+				height: $(window).height()-100, 
+				url: 'sysIconController.do?sysIcon', 
+				width: $(window).width()-200,
+				showMax: true, 
+				showToggle: true, 
+				showMin: true, 
+				isResize: true,
+				slide: false
+				}); 
+		}
+	};
+</script>
+</head>
+<body>
+	<form  class="form-horizontal" name="dataForm" method="post" action="sysFunctionController.do?save">
+		<input type="hidden" name="id" value="${sysFunction.id}" />
+		<input type="hidden" name="operate" value="${sysFunction.operate}" />
+		
+		<div class="control-group">
+		<label class="control-label">资源名称:<span class="required">*</span></label>
+		</div>
+		
+		
+		
+		
+		<div class="panel">
+		<div class="panel-top">
+			<div class="panel-toolbar">
+				<div class="toolBar">
+					<div class="group">
+<!-- 					<a class="link save" id="dataFormSave" href="#"><span></span>保存</a> -->
+					<input type="button" id="dataFormSave" class="link save" value="保存"/>
+					</div>
+					<div class="l-bar-separator"></div>
+				</div>
+			</div>
+		</div>
+		<div class="panel-body">
+				<table id="resourcesTable" class="table-detail" cellpadding="0" cellspacing="0" border="0">
+						<tr>
+							<th width="20%">资源名称:  <span class="required">*</span></th>
+							<td>
+							<input type="text" id="funcName" name="funcName" value="${sysFunction.funcName}" datatype="s2-15" nullmsg="请输入资源名称！"  class="inputText longInputText"/>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">资源别名:  <span class="required">*</span></th>
+							<td>
+							<input type="text" id="funcAlias" name="funcAlias" value="${sysFunction.funcAlias}" <c:if test="${sysFunction.funcAlias!=null}">disabled="disabled"</c:if><c:if test="${sysFunction.funcAlias==null}"> datatype="s2-15" ajaxurl="systemController.do?checkFunction" nullmsg="请输入资源别名！" </c:if> class="inputText longInputText" />
+							</td>
+						</tr>
+						
+						<tr>
+							<th width="20%">资源图标: </th>
+							<td>
+								<input type="hidden" id="icon" name="icon" value="${sysFunction.icon}"  class="inputText"/>
+								<img id="iconImg" alt="" src="${sysFunction.icon}" <c:if test="${sysFunction.icon==null}">style="display:none;"</c:if>>
+								<a class="link detail" href="javascript:selectIcon();">选择</a>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">默认地址: </th>
+							<td><input type="text" id="funcUrl" name="funcUrl" style="width:400px" value="${sysFunction.funcUrl}"  class="inputText"/></td>
+						</tr>
+						<tr>
+							<th width="20%">是否有子节点: </th>
+							<td>
+								<select id="isFolder" name="isFolder">
+									<option value="0" <c:if test="${sysFunction.isFolder==0}">selected="selected"</c:if>>否</option>
+									<option value="1" <c:if test="${sysFunction.isFolder==1}">selected="selected"</c:if>>是</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">显示到菜单: </th>
+							<td>
+								<select id="isDisplayInMenu" name="isShow">
+									<option value="0" <c:if test="${sysFunction.isShow==0}">selected="selected"</c:if>>否</option>
+									<option value="1" <c:if test="${sysFunction.isShow==1}">selected="selected"</c:if>>是</option>
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<th width="20%">默认打开: </th>
+							<td>
+								<select id="isOpen" name="isOpen">
+									<option value="0" <c:if test="${sysFunction.isOpen==0}">selected="selected"</c:if>>否</option>
+									<option value="1" <c:if test="${sysFunction.isOpen==1}">selected="selected"</c:if>>是</option>
+								</select>
+							</td>
+						</tr>
+						
+						<tr>
+							<th width="20%">同级排序: </th>
+							<td><input type="text" id="funcOrder" name="funcOrder" value="${sysFunction.funcOrder}"  class="inputText"/></td>
+						</tr>
+						<tr style="display: none;">
+							<th width="20%">父ID: </th>
+							<td><input type="text" id="parentId" name="parentId" value="${sysFunction.parentId}"  class="inputText"/></td>
+						</tr>
+				</table>
+					
+		</div>
+		</div>
+	</form>
+</body>
+</html>

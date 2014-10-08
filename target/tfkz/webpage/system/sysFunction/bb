@@ -1,0 +1,410 @@
+<!-- BEGIN JAVASCRIPT -->
+	<script type="text/javascript">
+	var rootId = 0;
+
+	var foldMenu;
+	var leafMenu;
+	var systemMenu;
+
+	//当前访问系统
+	var systemId = null;
+
+	$(function() {
+		//菜单
+		loadTreeMenu();
+		
+		//加载树
+		loadTree();
+		
+		
+	});
+	//菜单
+	function loadTreeMenu() {
+// 		foldMenu = $.ligerMenu({
+// 			top : 100,
+// 			left : 100,
+// 			width : 120,
+// 			items : [ {
+// 				text : '增加节点',
+// 				click : addNode
+// 			}, {
+// 				text : '编辑节点',
+// 				click : editNode
+// 			}, {
+// 				text : '删除节点',
+// 				click : delNode
+// 			}, {
+// 				text : '导入资源',
+// 				click : importXml
+// 			}, {
+// 				text : '导出资源',
+// 				click : exportXml
+// 			}, {
+// 				text : '节点排序',
+// 				click : sortNode
+// 			} ]
+// 		});
+		systemMenu = {
+			top : 100,
+			left : 100,
+			width : 120,
+			items : [ {
+				text : '增加节点',
+				click : addNode
+			}, {
+				text : '导入资源',
+				click : importXml
+			}, {
+				text : '节点排序',
+				click : sortNode
+			} ]
+		};
+
+// 		leafMenu = $.ligerMenu({
+// 			top : 100,
+// 			left : 100,
+// 			width : 120,
+// 			items : [ {
+// 				text : '编辑节点',
+// 				click : editNode
+// 			}, {
+// 				text : '删除节点',
+// 				click : delNode
+// 			}, {
+// 				text : '编辑URL',
+// 				click : editUrl
+// 			} ]
+// 		});
+		
+// 		systemMenu='<ul class="dropdown-menu" style="position: absolute; z-index: 1000; display: block; top: 152px; left: 382px;">'+
+// 		'<li><a href="javascript:;"><i class="o-menu-add"></i> 新建</a></li><li><a href="javascript:;"><i class="o-menu-edit"></i> 编辑</a></li><li><a href="javascript:;"><i class="o-menu-up"></i> 向上移动</a></li><li><a href="javascript:;"><i class="o-menu-down"></i> 向下移动</a></li><li><a href="javascript:;"><i class="o-menu-trash"></i> 删除</a></li></ul>';
+	};
+
+	
+	//布局大小改变的时候通知tab，面板改变大小
+	function heightChanged(options) {
+		$("#resourcesTree").height(options.middleHeight - 90);
+	};
+	//树
+	var resourcesTree;
+	var expandByDepth = 1;
+	//加载树
+	function loadTree() {
+		var setting = {
+			async : {
+				enable : false
+			},
+			data : {
+				key : {
+					name : "funcName"
+				},
+				simpleData : {
+					enable : true,
+					idKey : "id",
+					pIdKey : "parentId",
+					rootPId : -1
+				}
+			},
+			view : {
+				selectedMulti : false
+			},
+			edit : {
+				drag : {
+					prev : false,
+					inner : true,
+					next : false,
+					isMove : true
+				},
+				enable : true,
+				showRemoveBtn : false,
+				showRenameBtn : false
+			},
+			callback : {
+				onClick : zTreeOnLeftClick,
+				onRightClick : zTreeOnRightClick,
+				beforeDrop : null,
+				onDrop : onDrop
+			}
+		};
+		var url = "systemController.do?sysFuncTree";
+		$.post(url, function(result) {
+			resourcesTree = $.fn.zTree.init($("#resourcesTree"), setting, 
+					$.parseJSON(result));
+
+			if (expandByDepth != 0) {
+				var nodes = resourcesTree.getNodesByFilter(function(node) {
+					return (node.level != 0);//展开根节点
+				});
+				if (nodes.length > 0) {
+					for (var idx = 0; idx < nodes.length; idx++) {
+						var node = nodes[idx];
+						if(node.isOpen == 1){
+							resourcesTree.expandNode(node, true, true);
+						}else{
+							resourcesTree.expandNode(node, false, false);
+						}
+						
+					}
+				}
+			} else {
+				resourcesTree.expandAll(true);
+			}
+
+		});
+
+	};
+
+	//拖放 前准备
+	/*
+	function beforeDrop(treeId, treeNodes, targetNode, moveType) {
+		if (!treeNodes) return false;
+		var drop=true;
+		var isFolder=targetNode.isFolder;
+		if(moveType=="inner"){
+			//判断是否有子节点,没有子节点不充许拖放
+			if(isFolder!=1){
+				$.ligerDialog.warn(targetNode.resName+'没有子节点,不能接收!','提示信息');
+				drop= false;
+			}
+		}
+		return drop;
+	};
+	
+	//拖放 后动作
+	function onDrop(event, treeId, treeNodes, targetNode, moveType) {
+		
+		if(!targetNode) return;
+		if(!treeNodes) return;
+		var targetId=targetNode.resId;
+		var sourceNode=treeNodes[0];
+		var sourceId=sourceNode.resId;
+		
+		var url="${ctx}/platform/system/resources/move.ht";
+		var params={targetId:targetId,sourceId:sourceId,moveType:moveType};
+		
+		$.post(url,params,function(result){
+			//作为子节点。
+			if("inner"==moveType){
+				sourceNode.parentId=targetId;
+			}
+			else{
+				sourceNode.parentId=targetNode.parentId;
+			}
+		});
+	} */
+
+	//左击
+	function zTreeOnLeftClick(event, treeId, treeNode) {
+		var resId = treeNode.id;
+		if (resId == rootId) {
+			return;
+		}
+		var url = "sysFunctionController.do?detail&id="+ treeNode.id;
+		$("#listFrame").attr("src", url);
+	};
+	/**
+	 * 树右击事件
+	 */
+	function zTreeOnRightClick(e, treeId, treeNode) {
+		//foldMenu.hide();
+		//leafMenu.hide();
+		var h = $(window).height();
+		var w = $(window).width();
+		var x = e.pageX, y = e.pageY;
+		
+		var menuWidth = 120;
+		var menuHeight = 75;
+		var menu = null;
+		
+		
+		
+		
+		if (treeNode.id == "0") {//0根节点
+			menu = systemMenu;
+			resourcesTree.showRightMenu({//显示右键菜单
+                x:event.clientX,   
+                y:event.clientY    
+            });
+		} 
+// 		else {
+// 			resourcesTree.selectNode(treeNode);
+// 			var isfolder=treeNode.isFolder;
+
+// 			if(isfolder==1){
+// 				menu = foldMenu;
+// 			}else if(isfolder==0){
+// 				menu = leafMenu;
+// 			}
+
+// 			if (e.pageY + menuHeight > h) {
+// 				y = e.pageY - menuHeight;
+// 			}
+// 			if (e.pageX + menuWidth > w) {
+// 				x = e.pageX - menuWidth;
+// 			}
+// 			menu.show({
+// 				top : y,
+// 				left : x
+// 			});
+// 		}
+	};
+
+	//展开收起
+	function treeExpandAll(type) {
+		resourcesTree = $.fn.zTree.getZTreeObj("resourcesTree");
+		resourcesTree.expandAll(type);
+	};
+
+	//添加资源
+	function addNode() {
+		var url = "sysFunctionController.do?addorupdate&operate=add&parentId="
+				+ getSelectNode().id;
+		$("#listFrame").attr("src", url);
+	};
+
+
+	//编辑资源
+	function editNode() {
+		var selectNode = getSelectNode();
+		var resId = selectNode.id;
+		if (resId == rootId) {
+			$.ligerDialog.warn('该节点为系统节点 ,不允许该操作');
+			return;
+		}
+		var url = "sysFunctionController.do?addorupdate&operate=edit&id="
+				+ selectNode.id;
+		$("#listFrame").attr("src", url);
+
+	};
+
+	//导入资源
+	function importXml() {
+		var selectNode = getSelectNode();
+		var resId = selectNode.resId;
+
+		var obj = {
+			resId : resId,
+			systemId : systemId
+		};
+		var url = __ctx + "/platform/system/resources/import.ht";
+
+		var conf = $.extend({}, {
+			dialogWidth : 550,
+			dialogHeight : 200,
+			help : 0,
+			status : 0,
+			scroll : 0,
+			center : 1
+		});
+		var winArgs = "dialogWidth=" + conf.dialogWidth + "px;dialogHeight="
+				+ conf.dialogHeight + "px;help=" + conf.help + ";status="
+				+ conf.status + ";scroll=" + conf.scroll + ";center="
+				+ conf.center;
+
+		url = url.getNewUrl();
+		var rtn = window.showModalDialog(url, obj, winArgs);
+	}
+
+	//导出资源
+	function exportXml() {
+		var selectNode = getSelectNode();
+		var resId = selectNode.resId;
+		window.location.href = "${ctx}/platform/system/resources/exportXml.ht?resId="
+				+ resId;
+	}
+	//节点排序
+	function sortNode() {
+		var selectNode = getSelectNode();
+		var resId = selectNode.resId;
+		var url = __ctx + '/platform/system/resources/sortList.ht?resId='
+				+ resId + '&systemId=' + systemId;
+		var winArgs = "dialogWidth:600px;dialogHeight:300px";
+		url = url.getNewUrl();
+		var rtn = window.showModalDialog(url, "", winArgs);
+		reFresh();
+
+	}
+	//删除资源
+	function delNode() {
+		var selectNode = getSelectNode();
+		var resId = selectNode.id;
+		if (resId == rootId) {
+			$.ligerDialog.warn('该节点为系统节点 ,不允许该操作');
+			return;
+		}
+		var callback = function(rtn) {
+			if (!rtn)
+				return;
+			var url = "sysFunctionController.do?del";
+			var params = {
+				id : resId
+			};
+			$.post(url, params, function(data) {
+				data = $.parseJSON(data);
+				if (data.success==true) {//成功
+					resourcesTree.removeNode(selectNode);
+					$("#listFrame").attr("src", "about:blank");
+					var dialog = $.ligerDialog.success(data.msg, "提示信息");
+					setTimeout(function () {
+						dialog.close(); 
+					}, 1000);
+				}
+			});
+		};
+		$.ligerDialog.confirm('确认删除吗？', '提示信息', callback);
+	};
+	//
+	function editUrl() {
+		var selectNode = getSelectNode();
+		var resId = selectNode.resId;
+		var url = "${ctx}/platform/system/resourcesUrl/edit.ht?resId=" + resId;
+		$("#listFrame").attr("src", url);
+	};
+
+	//选择资源节点。
+	function getSelectNode() {
+		resourcesTree = $.fn.zTree.getZTreeObj("resourcesTree");
+		var nodes = resourcesTree.getSelectedNodes();
+		var node = nodes[0];
+		return node;
+	}
+	//刷新
+	function reFresh() {
+		loadTree();
+	};
+
+	//移动节点
+	function onDrop(event,treeId,treeNodes, targetNode, moveType) {
+		if(moveType == "inner"){
+			url = "sysFunctionController.do?moveTree";
+			var params = {
+				targetId : targetNode.id,
+				sourceId : treeNodes[0].id
+			};
+			$.post(url, params, function(data) {
+				data = $.parseJSON(data);
+				if(data.success==true){
+					$.ligerDialog.success(data.msg,'提示信息');
+					loadTree();
+				}
+			});
+		}
+    }
+	
+	function showRightMenu (postion){
+        $("#rMenu").css({//设置右键菜单的位置
+            top:postion.y + "px",
+            left:postion.x+2 + "px",
+            display:"block"
+        });
+        if(tree.pNode.id==1){//如果是根节点则禁用“删除”、“修改名称”选项
+            tree.showItem(["#r_addFolder","#r_addNode"]);
+        }else if(tree.pNode.isParent){//如果是文件夹节点，则显示所有菜单选项
+            tree.showItem(["#r_addFolder","#r_addNode","#r_updateNode","#r_deleteNode"]);
+        }else{//此选项为节点，则禁用“增加节点”、“增加文件夹”选项
+            tree.showItem(["#r_deleteNode","#r_updateNode"]);
+        }            
+        tree.init.initEvent.initRMenu();//加载菜单选项的事件
+    }
+</script>
+	<!-- END JAVASCRIPT -->

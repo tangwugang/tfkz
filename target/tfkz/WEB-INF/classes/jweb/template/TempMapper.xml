@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="${bussiPackage}.${entityPackage}.mapper.${entityName}Mapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="${bussiPackage}.${entityPackage}.entity.${entityName}" >
+	<#list columnDatas as item>
+	<result column="${item.columnName}" property="${item.columnName}"/>
+	</#list>
+</resultMap>
+       
+<!-- ${tableName} table all fields -->
+<sql id="Base_Column_List" >
+	 ${SQL.columnFields}
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	${SQL.whereSql}
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from ${tableName}
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  ${SQL.insert}
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  ${SQL.update}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	${SQL.updateSelective}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	${SQL.delete}
+</delete>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from ${tableName} 
+	<include refid="Example_Where_Clause"/>
+</delete>
+ 
+<!-- 根据id查询 ${tableName} -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	${SQL.selectById}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from ${tableName} 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from ${tableName} 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		${SQL.orderBy}
+    </if>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectAll" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from ${tableName}
+</select>
+
+<!-- ${tableName} 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from ${tableName} 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		${SQL.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询${tableName}列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from ${tableName} 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		${SQL.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

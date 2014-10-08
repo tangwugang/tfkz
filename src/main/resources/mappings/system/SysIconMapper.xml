@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.takinframework.web.system.mapper.SysIconMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.takinframework.web.system.entity.SysIcon" >
+	<result column="id" property="id"/>
+	<result column="createBy" property="createBy"/>
+	<result column="createName" property="createName"/>
+	<result column="createDate" property="createDate"/>
+	<result column="updateDate" property="updateDate"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="updateName" property="updateName"/>
+	<result column="iconName" property="iconName"/>
+	<result column="iconType" property="iconType"/>
+	<result column="iconPath" property="iconPath"/>
+	<result column="iconContent" property="iconContent"/>
+	<result column="iconAlias" property="iconAlias"/>
+	<result column="extend" property="extend"/>
+</resultMap>
+       
+<!-- sys_icon table all fields -->
+<sql id="Base_Column_List" >
+	 id,createBy,createName,createDate,updateDate,updateBy,updateName,iconName,iconType,iconPath,iconContent,iconAlias,extend
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	where 1=1
+ 	<trim  suffixOverrides="and|or" >
+	<if test="createBy != null  and createBy != '' ">
+		 and createBy=#{createBy}
+	</if>
+	<if test="createName != null  and createName != '' ">
+		 and createName=#{createName}
+	</if>
+	<if test="createDate != null  ">
+		 and createDate=#{createDate}
+	</if>
+	<if test="updateDate != null  ">
+		 and updateDate=#{updateDate}
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		 and updateBy=#{updateBy}
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		 and updateName=#{updateName}
+	</if>
+	<if test="iconName != null  and iconName != '' ">
+		 and iconName=#{iconName}
+	</if>
+	<if test="iconType != null  ">
+		 and iconType=#{iconType}
+	</if>
+	<if test="iconPath != null  and iconPath != '' ">
+		 and iconPath=#{iconPath}
+	</if>
+	<if test="iconContent != null  ">
+		 and iconContent=#{iconContent}
+	</if>
+	<if test="iconAlias != null  and iconAlias != '' ">
+		 and iconAlias=#{iconAlias}
+	</if>
+	<if test="extend != null  and extend != '' ">
+		 and extend=#{extend}
+	</if>
+	</trim>
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_icon
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  insert into sys_icon(id,createBy,createName,createDate,updateDate,updateBy,updateName,iconName,iconType,iconPath,iconContent,iconAlias,extend)
+ values(#{id},#{createBy},#{createName},now(),now(),#{updateBy},#{updateName},#{iconName},#{iconType},#{iconPath},#{iconContent},#{iconAlias},#{extend})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update sys_icon set createBy=#{createBy},createName=#{createName},createDate=#{createDate},updateDate=now(),updateBy=#{updateBy},updateName=#{updateName},iconName=#{iconName},iconType=#{iconType},iconPath=#{iconPath},iconContent=#{iconContent},iconAlias=#{iconAlias},extend=#{extend} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update sys_icon set 
+	<trim  suffixOverrides="," >
+	<if test="createBy != null  and createBy != '' ">
+		createBy=#{createBy},
+	</if>
+	<if test="createName != null  and createName != '' ">
+		createName=#{createName},
+	</if>
+	<if test="createDate != null  ">
+		createDate=#{createDate},
+	</if>
+	<if test="updateDate != null  ">
+		updateDate=#{updateDate},
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		updateName=#{updateName},
+	</if>
+	<if test="iconName != null  and iconName != '' ">
+		iconName=#{iconName},
+	</if>
+	<if test="iconType != null  ">
+		iconType=#{iconType},
+	</if>
+	<if test="iconPath != null  and iconPath != '' ">
+		iconPath=#{iconPath},
+	</if>
+	<if test="iconContent != null  ">
+		iconContent=#{iconContent},
+	</if>
+	<if test="iconAlias != null  and iconAlias != '' ">
+		iconAlias=#{iconAlias},
+	</if>
+	<if test="extend != null  and extend != '' ">
+		extend=#{extend},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	delete 	 from sys_icon where id = #{id}
+</delete>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from sys_icon 
+	<include refid="Example_Where_Clause"/>
+</delete>
+ 
+<!-- 根据id查询 sys_icon -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from sys_icon where id = #{id}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_icon 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_icon 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectAll" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_icon
+</select>
+
+<!-- sys_icon 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from sys_icon 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询sys_icon列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from sys_icon 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

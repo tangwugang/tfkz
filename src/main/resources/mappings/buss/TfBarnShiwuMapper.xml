@@ -1,0 +1,349 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.takinframework.web.buss.mapper.TfBarnShiwuMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.takinframework.web.buss.entity.TfBarnShiwu" >
+	<result column="id" property="id"/>
+	<result column="createBy" property="createBy"/>
+	<result column="createName" property="createName"/>
+	<result column="createDate" property="createDate"/>
+	<result column="updateDate" property="updateDate"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="updateName" property="updateName"/>
+	<result column="liaShiPinZh" property="liaShiPinZh"/>
+	<result column="liaShiChanDi" property="liaShiChanDi"/>
+	<result column="liaShiXinZhi" property="liaShiXinZhi"/>
+	<result column="liaQuaGuiSu" property="liaQuaGuiSu"/>
+	<result column="number" property="number"/>
+	<result column="ruKuCenBen" property="ruKuCenBen"/>
+	<result column="soHuoNiaDu" property="soHuoNiaDu"/>
+	<result column="ruCanTime" property="ruCanTime"/>
+	<result column="huoWeiTime" property="huoWeiTime"/>
+	<result column="cuCenNianX" property="cuCenNianX"/>
+	<result column="guanLifanShi" property="guanLifanShi"/>
+	<result column="cuCenFanShi" property="cuCenFanShi"/>
+	<result column="ruCanFanShi" property="ruCanFanShi"/>
+	<result column="cunLiaBaoS" property="cunLiaBaoS"/>
+	<result column="bzCunLiaVol" property="bzCunLiaVol"/>
+	<result column="szCunLiaVol" property="szCunLiaVol"/>
+	<result column="rongZhong" property="rongZhong"/>
+	<result column="chuCaoLu" property="chuCaoLu"/>
+	<result column="shuiFen" property="shuiFen"/>
+	<result column="zaZhi" property="zaZhi"/>
+	<result column="ziFanSuaZhi" property="ziFanSuaZhi"/>
+	<result column="huanLieMi" property="huanLieMi"/>
+	<result column="zenJinMiLu" property="zenJinMiLu"/>
+	<result column="guWaiCaoMi" property="guWaiCaoMi"/>
+	<result column="buWanSanLi" property="buWanSanLi"/>
+	<result column="mjXiShuiLian" property="mjXiShuiLian"/>
+	<result column="yinDuZhiShu" property="yinDuZhiShu"/>
+	<result column="huHunLu" property="huHunLu"/>
+</resultMap>
+       
+<!-- tf_barn_shiwu table all fields -->
+<sql id="Base_Column_List" >
+	 id,createBy,createName,createDate,updateDate,updateBy,updateName,liaShiPinZh,liaShiChanDi,liaShiXinZhi,liaQuaGuiSu,number,ruKuCenBen,soHuoNiaDu,ruCanTime,huoWeiTime,cuCenNianX,guanLifanShi,cuCenFanShi,ruCanFanShi,cunLiaBaoS,bzCunLiaVol,szCunLiaVol,rongZhong,chuCaoLu,shuiFen,zaZhi,ziFanSuaZhi,huanLieMi,zenJinMiLu,guWaiCaoMi,buWanSanLi,mjXiShuiLian,yinDuZhiShu,huHunLu
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	where 1=1
+ 	<trim  suffixOverrides="and|or" >
+	<if test="createBy != null  and createBy != '' ">
+		 and createBy=#{createBy}
+	</if>
+	<if test="createName != null  and createName != '' ">
+		 and createName=#{createName}
+	</if>
+	<if test="createDate != null  ">
+		 and createDate=#{createDate}
+	</if>
+	<if test="updateDate != null  ">
+		 and updateDate=#{updateDate}
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		 and updateBy=#{updateBy}
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		 and updateName=#{updateName}
+	</if>
+	<if test="liaShiPinZh != null  and liaShiPinZh != '' ">
+		 and liaShiPinZh=#{liaShiPinZh}
+	</if>
+	<if test="liaShiChanDi != null  and liaShiChanDi != '' ">
+		 and liaShiChanDi=#{liaShiChanDi}
+	</if>
+	<if test="liaShiXinZhi != null  and liaShiXinZhi != '' ">
+		 and liaShiXinZhi=#{liaShiXinZhi}
+	</if>
+	<if test="liaQuaGuiSu != null  and liaQuaGuiSu != '' ">
+		 and liaQuaGuiSu=#{liaQuaGuiSu}
+	</if>
+	<if test="number != null  ">
+		 and number=#{number}
+	</if>
+	<if test="ruKuCenBen != null  ">
+		 and ruKuCenBen=#{ruKuCenBen}
+	</if>
+	<if test="soHuoNiaDu != null  and soHuoNiaDu != '' ">
+		 and soHuoNiaDu=#{soHuoNiaDu}
+	</if>
+	<if test="ruCanTime != null  and ruCanTime != '' ">
+		 and ruCanTime=#{ruCanTime}
+	</if>
+	<if test="huoWeiTime != null  and huoWeiTime != '' ">
+		 and huoWeiTime=#{huoWeiTime}
+	</if>
+	<if test="cuCenNianX != null  ">
+		 and cuCenNianX=#{cuCenNianX}
+	</if>
+	<if test="guanLifanShi != null  and guanLifanShi != '' ">
+		 and guanLifanShi=#{guanLifanShi}
+	</if>
+	<if test="cuCenFanShi != null  and cuCenFanShi != '' ">
+		 and cuCenFanShi=#{cuCenFanShi}
+	</if>
+	<if test="ruCanFanShi != null  and ruCanFanShi != '' ">
+		 and ruCanFanShi=#{ruCanFanShi}
+	</if>
+	<if test="cunLiaBaoS != null  ">
+		 and cunLiaBaoS=#{cunLiaBaoS}
+	</if>
+	<if test="bzCunLiaVol != null  ">
+		 and bzCunLiaVol=#{bzCunLiaVol}
+	</if>
+	<if test="szCunLiaVol != null  ">
+		 and szCunLiaVol=#{szCunLiaVol}
+	</if>
+	<if test="rongZhong != null  ">
+		 and rongZhong=#{rongZhong}
+	</if>
+	<if test="chuCaoLu != null  ">
+		 and chuCaoLu=#{chuCaoLu}
+	</if>
+	<if test="shuiFen != null  ">
+		 and shuiFen=#{shuiFen}
+	</if>
+	<if test="zaZhi != null  ">
+		 and zaZhi=#{zaZhi}
+	</if>
+	<if test="ziFanSuaZhi != null  ">
+		 and ziFanSuaZhi=#{ziFanSuaZhi}
+	</if>
+	<if test="huanLieMi != null  ">
+		 and huanLieMi=#{huanLieMi}
+	</if>
+	<if test="zenJinMiLu != null  ">
+		 and zenJinMiLu=#{zenJinMiLu}
+	</if>
+	<if test="guWaiCaoMi != null  ">
+		 and guWaiCaoMi=#{guWaiCaoMi}
+	</if>
+	<if test="buWanSanLi != null  ">
+		 and buWanSanLi=#{buWanSanLi}
+	</if>
+	<if test="mjXiShuiLian != null  ">
+		 and mjXiShuiLian=#{mjXiShuiLian}
+	</if>
+	<if test="yinDuZhiShu != null  ">
+		 and yinDuZhiShu=#{yinDuZhiShu}
+	</if>
+	<if test="huHunLu != null  ">
+		 and huHunLu=#{huHunLu}
+	</if>
+	</trim>
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from tf_barn_shiwu
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  insert into tf_barn_shiwu(id,createBy,createName,createDate,updateDate,updateBy,updateName,liaShiPinZh,liaShiChanDi,liaShiXinZhi,liaQuaGuiSu,number,ruKuCenBen,soHuoNiaDu,ruCanTime,huoWeiTime,cuCenNianX,guanLifanShi,cuCenFanShi,ruCanFanShi,cunLiaBaoS,bzCunLiaVol,szCunLiaVol,rongZhong,chuCaoLu,shuiFen,zaZhi,ziFanSuaZhi,huanLieMi,zenJinMiLu,guWaiCaoMi,buWanSanLi,mjXiShuiLian,yinDuZhiShu,huHunLu)
+ values(#{id},#{createBy},#{createName},now(),now(),#{updateBy},#{updateName},#{liaShiPinZh},#{liaShiChanDi},#{liaShiXinZhi},#{liaQuaGuiSu},#{number},#{ruKuCenBen},#{soHuoNiaDu},#{ruCanTime},#{huoWeiTime},#{cuCenNianX},#{guanLifanShi},#{cuCenFanShi},#{ruCanFanShi},#{cunLiaBaoS},#{bzCunLiaVol},#{szCunLiaVol},#{rongZhong},#{chuCaoLu},#{shuiFen},#{zaZhi},#{ziFanSuaZhi},#{huanLieMi},#{zenJinMiLu},#{guWaiCaoMi},#{buWanSanLi},#{mjXiShuiLian},#{yinDuZhiShu},#{huHunLu})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update tf_barn_shiwu set createBy=#{createBy},createName=#{createName},createDate=#{createDate},updateDate=now(),updateBy=#{updateBy},updateName=#{updateName},liaShiPinZh=#{liaShiPinZh},liaShiChanDi=#{liaShiChanDi},liaShiXinZhi=#{liaShiXinZhi},liaQuaGuiSu=#{liaQuaGuiSu},number=#{number},ruKuCenBen=#{ruKuCenBen},soHuoNiaDu=#{soHuoNiaDu},ruCanTime=#{ruCanTime},huoWeiTime=#{huoWeiTime},cuCenNianX=#{cuCenNianX},guanLifanShi=#{guanLifanShi},cuCenFanShi=#{cuCenFanShi},ruCanFanShi=#{ruCanFanShi},cunLiaBaoS=#{cunLiaBaoS},bzCunLiaVol=#{bzCunLiaVol},szCunLiaVol=#{szCunLiaVol},rongZhong=#{rongZhong},chuCaoLu=#{chuCaoLu},shuiFen=#{shuiFen},zaZhi=#{zaZhi},ziFanSuaZhi=#{ziFanSuaZhi},huanLieMi=#{huanLieMi},zenJinMiLu=#{zenJinMiLu},guWaiCaoMi=#{guWaiCaoMi},buWanSanLi=#{buWanSanLi},mjXiShuiLian=#{mjXiShuiLian},yinDuZhiShu=#{yinDuZhiShu},huHunLu=#{huHunLu} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update tf_barn_shiwu set 
+	<trim  suffixOverrides="," >
+	<if test="createBy != null  and createBy != '' ">
+		createBy=#{createBy},
+	</if>
+	<if test="createName != null  and createName != '' ">
+		createName=#{createName},
+	</if>
+	<if test="createDate != null  ">
+		createDate=#{createDate},
+	</if>
+	<if test="updateDate != null  ">
+		updateDate=#{updateDate},
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		updateName=#{updateName},
+	</if>
+	<if test="liaShiPinZh != null  and liaShiPinZh != '' ">
+		liaShiPinZh=#{liaShiPinZh},
+	</if>
+	<if test="liaShiChanDi != null  and liaShiChanDi != '' ">
+		liaShiChanDi=#{liaShiChanDi},
+	</if>
+	<if test="liaShiXinZhi != null  and liaShiXinZhi != '' ">
+		liaShiXinZhi=#{liaShiXinZhi},
+	</if>
+	<if test="liaQuaGuiSu != null  and liaQuaGuiSu != '' ">
+		liaQuaGuiSu=#{liaQuaGuiSu},
+	</if>
+	<if test="number != null  ">
+		number=#{number},
+	</if>
+	<if test="ruKuCenBen != null  ">
+		ruKuCenBen=#{ruKuCenBen},
+	</if>
+	<if test="soHuoNiaDu != null  and soHuoNiaDu != '' ">
+		soHuoNiaDu=#{soHuoNiaDu},
+	</if>
+	<if test="ruCanTime != null  and ruCanTime != '' ">
+		ruCanTime=#{ruCanTime},
+	</if>
+	<if test="huoWeiTime != null  and huoWeiTime != '' ">
+		huoWeiTime=#{huoWeiTime},
+	</if>
+	<if test="cuCenNianX != null  ">
+		cuCenNianX=#{cuCenNianX},
+	</if>
+	<if test="guanLifanShi != null  and guanLifanShi != '' ">
+		guanLifanShi=#{guanLifanShi},
+	</if>
+	<if test="cuCenFanShi != null  and cuCenFanShi != '' ">
+		cuCenFanShi=#{cuCenFanShi},
+	</if>
+	<if test="ruCanFanShi != null  and ruCanFanShi != '' ">
+		ruCanFanShi=#{ruCanFanShi},
+	</if>
+	<if test="cunLiaBaoS != null  ">
+		cunLiaBaoS=#{cunLiaBaoS},
+	</if>
+	<if test="bzCunLiaVol != null  ">
+		bzCunLiaVol=#{bzCunLiaVol},
+	</if>
+	<if test="szCunLiaVol != null  ">
+		szCunLiaVol=#{szCunLiaVol},
+	</if>
+	<if test="rongZhong != null  ">
+		rongZhong=#{rongZhong},
+	</if>
+	<if test="chuCaoLu != null  ">
+		chuCaoLu=#{chuCaoLu},
+	</if>
+	<if test="shuiFen != null  ">
+		shuiFen=#{shuiFen},
+	</if>
+	<if test="zaZhi != null  ">
+		zaZhi=#{zaZhi},
+	</if>
+	<if test="ziFanSuaZhi != null  ">
+		ziFanSuaZhi=#{ziFanSuaZhi},
+	</if>
+	<if test="huanLieMi != null  ">
+		huanLieMi=#{huanLieMi},
+	</if>
+	<if test="zenJinMiLu != null  ">
+		zenJinMiLu=#{zenJinMiLu},
+	</if>
+	<if test="guWaiCaoMi != null  ">
+		guWaiCaoMi=#{guWaiCaoMi},
+	</if>
+	<if test="buWanSanLi != null  ">
+		buWanSanLi=#{buWanSanLi},
+	</if>
+	<if test="mjXiShuiLian != null  ">
+		mjXiShuiLian=#{mjXiShuiLian},
+	</if>
+	<if test="yinDuZhiShu != null  ">
+		yinDuZhiShu=#{yinDuZhiShu},
+	</if>
+	<if test="huHunLu != null  ">
+		huHunLu=#{huHunLu},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	delete 	 from tf_barn_shiwu where id = #{id}
+</delete>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from tf_barn_shiwu 
+	<include refid="Example_Where_Clause"/>
+</delete>
+ 
+<!-- 根据id查询 tf_barn_shiwu -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from tf_barn_shiwu where id = #{id}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from tf_barn_shiwu 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_barn_shiwu 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectAll" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_barn_shiwu
+</select>
+
+<!-- tf_barn_shiwu 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from tf_barn_shiwu 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询tf_barn_shiwu列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_barn_shiwu 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

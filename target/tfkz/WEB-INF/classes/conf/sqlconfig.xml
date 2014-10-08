@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<category id="SysUser">
+	<methord id="methord1">
+		<sql name="getEntityCount" param="id" exclude="page" value="count(1) from sys_user where id=?"/>
+		<sql name="checkEntityExits" param="userName,password" exclude="page" value="from sys_user where userName=? and password=?"/>
+		<sql name="findAll" exclude="page" value="from sys_user"/>
+		<sql name="findList" alias="u" param="id" exclude="page" value="from sys_user u,sys_user_depart d,sys_depart t where u.id=d.userId and d.departId=t.id and t.id=?"/>
+	</methord>
+	<methord id="methord2">
+		<sql name="findList" param="status" exclude="page" value="from sys_user  where status=?"/>
+	</methord>
+	<methord id="methord3">
+		<sql name="findList" alias="u" param="roleId" exclude="page" value="from sys_user_role ur,sys_role r,sys_user u where ur.roleId = r.id and ur.userId = u.id  and ur.roleId=? and r.enabled=1"/>
+	</methord>
+</category>
+<category id="SysDepart">
+	<methord id="methord1">
+		<sql name="findAll"  exclude="page" value="from sys_depart"/>
+		<sql name="findList" alias="d" param="userId" exclude="page" value="from sys_user_depart u,sys_depart d where u.departId = d.id and u.userId=? and u.isPrimary=1"/>
+	</methord>
+	<methord id="methord2">
+		<sql name="findList" alias="d" param="userId" exclude="page" value="from sys_user_depart u,sys_depart d where u.departId = d.id and u.userId=?"/>
+	</methord>
+</category>
+<category id="SysRole">
+	<methord id="methord1">
+		<sql name="getEntity" param="id" exclude="page" value="from sys_role where id=? and enabled=1"/>
+	</methord>
+	<methord id="methord2">
+		<sql name="findList" alias="d" param="userId" exclude="page" value="from sys_user_role u,sys_role d where u.roleId = d.id and u.userId=? and d.enabled=1"></sql>
+	</methord>
+</category>
+<category id="SysUserRole">
+	<methord id="methord1">
+		<sql name="findList" alias="u" param="userId" exclude="page" value="from sys_user_role u,sys_role d where u.roleId = d.id and u.userId=? and d.enabled=1"/>
+		<sql name="delete" param="roleId" value="delete from sys_user_role where 1=1 and roleId=?"></sql>
+	</methord>
+	<methord id="methord2">
+		<sql name="delete" param="userId" value="delete from sys_user_role where 1=1 and userId=?"></sql>
+		<sql name="findList" alias="u" param="roleId" exclude="page" value="from sys_user_role ur,sys_role r,sys_user u where ur.roleId = r.id and ur.userId = u.id and ur.roleId=? and r.enabled=1"/>
+	</methord>
+</category>
+<category id="SysRoleFunction">
+	<methord id="methord1">
+		<sql name="findList" alias="u" param="roleId" exclude="page" value="from sys_role_function u,sys_role d,sys_function f where u.roleId = d.id and f.id = u.funcId and u.roleId=? order by f.funcOrder desc"/>
+		<sql name="delete" param="roleId" value="delete from sys_role_function where 1=1 and roleId=?"></sql>
+	</methord>
+	<methord id="methord2">
+		<sql name="findList" alias="u" param="funcId,userId" exclude="page" value="from sys_role_function u,sys_user_role d where u.roleId = d.roleId and u.funcId=? and d.userId=?"/>
+	</methord>
+	<methord id="methord3">
+		<sql name="findList" param="funcId" exclude="page" value="from sys_role_function funcId=?"/>
+	</methord>
+</category>
+<category id="SysType">
+	<methord id="methord1">
+		<sql name="findList" param="typeGroupId" exclude="page" value="from sys_type where typeGroupId=?"/>
+		<sql name="findAll"  exclude="page" value="from sys_type where 1=1 group by type"/>
+	</methord>
+</category>
+<category id="SysTypeGroup">
+	<methord id="methord1">
+		<sql name="findAll" exclude="page" value="from sys_type_group"/>
+		<sql name="getEntity" param="id" exclude="page" value="from sys_type_group where id=?"/>
+	</methord>
+</category>
+<category id="SysOperation">
+	<methord id="methord1">
+		<sql name="findList" param="funcId" exclude="page" value="from sys_operation where funcId=?"/>
+	</methord>
+</category>
+<category id="SysFunction">
+	<methord id="methord1">
+		<sql name="getEntityCount" param="funcAlias" exclude="page,childs" value="count(1) from sys_function where funcAlias=?"/>
+		<sql name="getEntity" param="id" exclude="page,childs" value="from sys_function where id=?"/>
+		<sql name="findAll"  exclude="page,childs" value="from sys_function where 1=1 order by funcOrder desc"/>
+		<sql name="findList" alias="f" param="funcId,funcUrl" exclude="page,childs" value="from sys_function f,sys_role_function rf,sys_user_role ru where f.id=rf.funcId and rf.roleId = ru.roleId and ru.userId=? and f.funcUrl like ? order by f.funcOrder desc"/>
+	</methord>
+	<methord id="methord2">
+		<sql name="findList" param="parentId" exclude="page,childs" value="from sys_function where parentId=?"/>
+	</methord>
+	<methord id="methord3">
+		<sql name="findList" alias="f" param="roleId" exclude="page" value="from sys_role_function u,sys_role d,sys_function f where u.roleId = d.id and f.id = u.funcId and u.roleId=? order by f.funcOrder desc"/>
+	</methord>
+</category>
+
+<!-- 业务方面 -->
+<category id="TfBarn">
+	<methord id="methord1">
+		<sql name="getEntity" param="id" exclude="page" value="from tf_barn where 1=1 and id=?"></sql>
+	</methord>
+	<methord id="methord2">
+		<sql name="getEntity" param="barnNo" exclude="page" value="from tf_barn where 1=1 and barnNo=?"></sql>
+	</methord>
+</category>
+<category id="TfBarnDevices">
+	<methord id="methord1">
+		<sql name="findList" alias="d" param="tfBarnId" exclude="page" value="from tf_barn_devices d,tf_barn b where 1=1 and d.tfBarnId = b.id and d.tfBarnId=?"/>
+		<sql name="delete" param="tfBarnId" value="delete from tf_barn_devices where 1=1 and tfBarnId=?"></sql>
+	</methord>
+</category>
+<category id="TfBarnWeihu">
+	<methord id="methord1">
+		<sql name="findList" alias="d" param="tfBarnId" exclude="page" value="from tf_barn_weihu d,tf_barn b where 1=1 and d.tfBarnId = b.id and b.id=?"/>
+		<sql name="delete" param="tfBarnId" value="delete from tf_barn_weihu where 1=1 and tfBarnId=?"></sql>
+	</methord>
+</category>
+<category id="TfBarnShiwu">
+	<methord id="methord1">
+		<sql name="findList" param="tfBarnId" exclude="page" value="from tf_barn_shiwu where 1=1 and tfBarnId=?"></sql>
+		<sql name="delete" param="tfBarnId" value="delete from tf_barn_shiwu where 1=1 and tfBarnId=?"></sql>
+	</methord>
+</category>
+<category id="TfGuizeTimes">
+	<methord id="methord1">
+		<sql name="findList" alias="d" param="tfGuiZeId" exclude="page" value="from tf_guize_times d,tf_guize b where 1=1 and d.tfGuiZeId = b.id and b.id=?"/>
+		<sql name="delete" param="tfGuiZeId" value="delete from tf_guize_times where 1=1 and tfGuiZeId=?"></sql>
+	</methord>
+</category>
+<category id="TfGuize">
+	<methord id="methord1">
+		<sql name="findAll" exclude="page" value="from tf_guize where 1=1 and status='Y'"></sql>
+	</methord>
+</category>
+<category id="TfBarnTfConfig">
+	<methord id="methord1">
+		<sql name="delete" param="tfGuiZeId" value="delete from tf_barn_tf_config where 1=1 and tfGuiZeId=?"></sql>
+	</methord>
+</category>
+<category id="TfConfigDevices">
+	<methord id="methord1">
+		<sql name="findList" alias="d" param="tfConfigId" exclude="page" value="from tf_config_devices d,tf_barn_tf_config c where 1=1 and d.tfConfigId = c.id and d.tfConfigId = ?"></sql>
+		<sql name="delete" param="tfGuiZeId" value="delete from tf_config_devices where 1=1 and tfGuiZeId=?"></sql>
+	</methord>
+	<methord id="methord2">
+		<sql name="findList" alias="d" param="tfGuiZeId" exclude="page" value="from tf_config_devices d,tf_guize c where 1=1 and d.tfGuiZeId = c.id and d.tfGuiZeId = ?"></sql>
+		<sql name="delete" param="tfConfigId" value="delete from tf_config_devices where 1=1 and tfConfigId=?"></sql>
+	</methord>
+</category>
+<category id="TfMachine">
+	<methord id="methord1"> 
+		<sql name="findList" alias="m" param="tfGuiZeId" exclude="page" value="from tf_machine m,tf_guize g where 1=1 and m.tfGuiZeId = g.id and m.enTonFenTime is null and m.tfGuiZeId = ? "></sql>
+	</methord>
+</category>
+
+</root>

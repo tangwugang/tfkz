@@ -1,0 +1,27 @@
+
+div, ul{
+    list-style:none; 
+    margin:0; padding:0; 
+}
+div#rMenu {
+    background-color:#4b8df8;
+    text-align: left;
+    padding:2px;
+    width:100px;
+    position:absolute;
+    display:none;
+}
+div#rMenu ul {
+	color:#fff;
+    margin:1px 0;
+    padding:0 5px;
+    cursor: pointer;
+    list-style: none outside none;
+    background-color:#4b8df8;
+    display:none;
+}
+div#rMenu ul li {
+    margin:0;
+    padding:2px 0;
+    
+}

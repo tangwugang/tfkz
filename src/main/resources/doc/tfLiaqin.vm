@@ -1,0 +1,180 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html xmlns:v="urn:schemas-microsoft-com:vml"
+xmlns:o="urn:schemas-microsoft-com:office:office"
+xmlns:w="urn:schemas-microsoft-com:office:word"
+xmlns:m="http://schemas.microsoft.com/office/2004/12/omml"
+xmlns="http://www.w3.org/TR/REC-html40">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>粮情检查记录</title>
+<style type="text/css">
+body{text-align:center;margin:0px;padding:0px;}
+.table_center{ width:1200px;border:1px #333 solid;font-size:15px;}
+h1{ text-align:center; font-family:"微软雅黑"; font-weight:normal;}
+.table_center table{ border-left:1px #333 solid;border-top:1px #333 solid;width:1200px; }
+.table_center table td{ border-right:1px #333 solid;border-bottom:1px #333 solid; padding:0 5px;}
+.table_center table td label{ float:right;}
+.tab_out{ height:40px; line-height:40px; width:1200px;}
+.tab_out table{ border:none;width:1200px;}
+.out_left{ text-align:left;width:30%;}
+.out_right{ float:right;width:30%}
+.out_mid{ margin-left:400px; float:left;width:30%}
+</style>
+</head>
+<body>
+<h1>粮情检查记录</h1>
+<div class="tab_out">
+   <table align=center  style="border-collapse:collapse; width:551.5000pt; margin-left:201.0000pt; padding:0.0000pt 0.0000pt 0.0000pt 0.0000pt ; ">
+   <tr>
+     <td height="40" width="30%">填制日期：${createDate!}</td><td width="30%"></td>
+     <td style="font-size:15px">天气：晴<span style='font-family:Wingdings;'><span>¨</span></span>、阴<span style='font-family:Wingdings;'><span>¨</span></span>、雨<span style='font-family:Wingdings;'><span>¨</span></span>、雪<span style='font-family:Wingdings;'><span>¨</span></span></td>
+   </tr>
+   </table>   
+</div>
+<div class="table_center">
+        <table  align=center  style="border-collapse:collapse; width:551.5000pt; margin-left:201.0000pt; padding:0.0000pt 0.0000pt 0.0000pt 0.0000pt ; ">
+         <tr>
+           <td height="40" width="10%" align="center">仓房编号</td>
+           <td width="40%" colspan="5" >${tfBarn.barnNo!}
+           </td>
+           <td width="10%" align="center">实际数量</td>
+           <td width="40%" colspan="5" >${tfBarnShiwu.number!}
+           &nbsp;<label>吨</label></td>
+         </tr>
+         <tr>
+           <td height="40" width="10%" align="center">水分</td>
+           <td width="10%">${tfLiaqin.shuiFen!}&nbsp;<label>%</label></td>
+           <td height="40" width="5%" align="center">杂质</td>
+           <td width="10%">${tfLiaqin.zaZhi!}&nbsp;<label>%</label></td>
+           <td height="40" width="5%" align="center">仓温</td>
+           <td width="10%">${tfLiaqin.canWen!}&nbsp;<label>℃</label></td>
+           <td height="40" width="10%" align="center">气温</td>
+           <td width="10%">${tfLiaqin.qiWen!}&nbsp;<label>℃</label></td>
+           <td height="40" width="5%" align="center">仓湿</td>
+           <td width="10%">${tfLiaqin.canShi!}&nbsp;<label>RH%</label></td>
+           <td height="40" width="5%" align="center">气湿</td>
+           <td width="10%">${tfLiaqin.qiShi!}&nbsp;<label>RH%</label></td>
+         </tr>
+         <tr>
+           <td rowspan="4"  width="30" height="10%" align="center">粮温检查情况</td>
+           <td height="30" width="10%"  align="center">部位</td>
+           <td height="30" width="15%"  colspan="2" align="center">上层</td>
+           <td height="30" width="15%"  colspan="2" align="center">中上层</td>
+           <td height="30" width="20%"   colspan="2" align="center">中下层</td>
+           <td height="30" width="15%"   colspan="2" align="center">下层</td>
+           <td height="30" width="15%"  colspan="2" align="center">整仓平均粮温</td>
+         </tr>
+         <tr>
+           <td height="30" width="10%"  align="center">最高</td>
+           <td height="30" width="15%" colspan="2" >${tfLiaqin.scZuiGaoWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="15%" colspan="2" >${tfLiaqin.zscZuiGaoWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="20%" colspan="2">${tfLiaqin.zxcZuiGaoWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="38" width="15%" colspan="2">${tfLiaqin.xcZuiGaoWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="15%" colspan="2" rowspan="3" >${tfLiaqin.zcPinJunWen!}
+           &nbsp;<label>℃</label></td>
+         </tr>
+         <tr>
+           <td height="30" width="10%"  align="center">最低</td>
+           <td height="30" width="15%" colspan="2" >${tfLiaqin.scZuiDiWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="15%" colspan="2" >${tfLiaqin.zscZuiDiWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="20%" colspan="2">${tfLiaqin.zxcZuiDiWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="15%" colspan="2">${tfLiaqin.xcZuiDiWen!}
+           &nbsp;<label>℃</label></td>
+         </tr>
+         <tr>
+           <td height="30" width="10%"  align="center">平均</td>
+           <td height="30" width="15%" colspan="2" >${tfLiaqin.scPinJunWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="15%" colspan="2" >${tfLiaqin.zscPinJunWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="20%" colspan="2">${tfLiaqin.zxcPinJunWen!}
+           &nbsp;<label>℃</label></td>
+           <td height="30" width="15%" colspan="2">${tfLiaqin.xcPinJunWen!}
+           &nbsp;<label>℃</label></td>
+         </tr>
+         <tr>
+           <td height="30" colspan="2" width="20%"  align="center">虫害检测方式</td>
+           <td colspan="3" width="20%" align="center" style="font-size:15px">过筛检测&nbsp;<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaCheFanS?contains("GL")>&thorn;<#else>¨</#if></span></span></td>
+           <td colspan="3" width="30%" align="center" style="font-size:15px">诱捕检测&nbsp;<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaCheFanS?contains("YB")>&thorn;<#else>¨</#if></span></span></td>
+           <td colspan="4" width="30%" align="center" style="font-size:15px">空间检测&nbsp;<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaCheFanS?contains("KJ")>&thorn;<#else>¨</#if></span></span></td>
+         </tr>
+
+         <tr>
+           <td height="30" colspan="2" width="20%"  align="center">虫害采样部位</td>
+           <td colspan="10" width="80%" align="left" style="font-size:15px">仓房四角<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("CFSJ")>&thorn;<#else>¨</#if></span></span>、进出门<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("JCM")>&thorn;<#else>¨</#if></span></span>、窗户口<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("CHK")>&thorn;<#else>¨</#if></span></span>、通风道口<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("TFDK")>&thorn;<#else>¨</#if></span></span>、沿墙<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("YQ")>&thorn;<#else>¨</#if></span></span>、扇墙<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("SQ")>&thorn;<#else>¨</#if></span></span>、粮堆中间<span style='font-family:Wingdings;'><span><#if tfLiaqin.caiYanBuWei?contains("LDZJ")>&thorn;<#else>¨</#if></span></span></td>
+         </tr>
+         <tr>
+           <td height="30" colspan="2" width="20%"  align="center">检测部位数量</td>
+           <td width="15%" colspan="2" >${tfLiaqin.jiaCheNum!}&nbsp;<label>个</label></td>
+           <td  width="15%" colspan="2"  align="center">发现虫害部位</td>
+           <td width="20%" colspan="2">${tfLiaqin.choHaiBuWei!}&nbsp;<label>个</label></td>
+           <td width="15%" colspan="2"  align="center">虫害位置分布</td>
+           <td width="15%" colspan="2">${tfLiaqin.choHaiFenBu!}</td>
+         </tr>
+         <tr>
+           <td height="30" colspan="2" width="20%"  align="center">具体虫害名称</td>
+           <td width="80%" colspan="10" align="left">&nbsp;${tfLiaqin.choHaiName!}</td>
+         </tr>
+         <tr>
+           <td height="30" width="20%" colspan="2"  align="center">害虫密度</td>
+           <td width="30%" colspan="4" >${tfLiaqin.haiChoMiDu!}&nbsp;<label>头/kg</label></td>
+           <td width="20%" colspan="2"  align="center">主要害虫密度</td>
+           <td width="30%" colspan="4" >${tfLiaqin.zhaiChoMiDu!}&nbsp;<label>头/kg</label></td>
+         </tr>
+         <tr>
+           <td height="38" colspan="2" width="20%"  align="center">判定虫粮等级</td>
+           <td width="40%" colspan="5" style="font-size:15px">基本无虫粮<span style='font-family:Wingdings;'><span><#if tfLiaqin.choLiaLevel == 0>&thorn;<#else>¨</#if></span></span>；一般虫粮<span style='font-family:Wingdings;'><span><#if tfLiaqin.choLiaLevel == 1>&thorn;<#else>¨</#if></span></span>；严重虫粮<span style='font-family:Wingdings;'><span><#if tfLiaqin.choLiaLevel == 2>&thorn;<#else>¨</#if></span></span></td>
+           <td width="15%" colspan="2"  align="center">熏蒸措施</td>
+           <td width="25%" colspan="3" style="font-size:15px">已熏蒸<span style='font-family:Wingdings;'><span><#if tfLiaqin.xunZhenCuoS == 1>&thorn;<#else>¨</#if></span></span>；
+           未熏蒸<span style='font-family:Wingdings;'><span><#if tfLiaqin.xunZhenCuoS == 0>&thorn;<#else>¨</#if></span></span></td>
+         </tr>
+         <tr>
+           <td height="40" colspan="2" width="20%"  align="center">粮情变化情况</td>
+           <td width="80%" colspan="10" align="left" style="font-size:12px">粮食有无发现发热，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.liaQiQiKua?substring(0,1) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.liaQiQiKua?substring(0,1) = "0">&thorn;<#else>¨</#if></span></span>；粮食有无发现霉变，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.liaQiQiKua?substring(2) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.liaQiQiKua?substring(2) = "0">&thorn;<#else>¨</#if></span></span> </td>
+         </tr>
+         <tr>
+           <td height="40" colspan="2" width="20%"  align="center" rowspan="3">仓房安全情况</td>
+           <td width="80%" height="40" colspan="10" align="left" style="font-size:12px">顶棚有无发现渗漏，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(0,1) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(0,1) = "0">&thorn;<#else>¨</#if></span></span>；墙体、地坪有无发现渗漏，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(2,3) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(2,3) = "0">&thorn;<#else>¨</#if></span></span>；门窗有无发现渗漏，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(4,5) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(4,5) = "0">&thorn;<#else>¨</#if></span></span> </td>
+         </tr>
+         <tr>
+           <td width="80%" height="40" colspan="10" align="left" style="font-size:12px">顶棚有无发现裂缝，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(6,7) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(6,7) = "0">&thorn;<#else>¨</#if></span></span>；墙体、地坪有无发现裂缝，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(8,9) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(8,9) = "0">&thorn;<#else>¨</#if></span></span>；门窗有无发现裂缝，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(10,11) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无 <span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(10,11) = "0">&thorn;<#else>¨</#if></span></span> </td>
+         </tr>
+         <tr>
+           <td width="80%" height="40" colspan="10" align="left" style="font-size:12px">仓内照明是否故障，是<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(12,13) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;否<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(12,13) = "0">&thorn;<#else>¨</#if></span></span>；上下楼梯是否安全，是<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(14,15) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;否<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(14,15) = "0">&thorn;<#else>¨</#if></span></span>；辅助设施是否完好，是<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(16) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;否<span style='font-family:Wingdings;'><span><#if tfLiaqin.anQuanQiKua?substring(16) = "0">&thorn;<#else>¨</#if></span></span> </td>
+         </tr>
+         <tr>
+           <td height="40" colspan="2" width="20%"  align="center">仓房清卫情况</td>
+           <td width="80%" colspan="10" align="left" style="font-size:12px">仓内有无发现鼠雀，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.qinWeiQiKua?substring(0,1) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.qinWeiQiKua?substring(0,1) = "0">&thorn;<#else>¨</#if></span></span>；仓内有无发现蛛网，有<span style='font-family:Wingdings;'><span><#if tfLiaqin.qinWeiQiKua?substring(2,3) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;无<span style='font-family:Wingdings;'><span><#if tfLiaqin.qinWeiQiKua?substring(2,3) = "0">&thorn;<#else>¨</#if></span></span>；清洁卫生是否达标，是<span style='font-family:Wingdings;'><span><#if tfLiaqin.qinWeiQiKua?substring(4) = "1">&thorn;<#else>¨</#if></span></span>&nbsp;否<span style='font-family:Wingdings;'><span><#if tfLiaqin.qinWeiQiKua?substring(4) = "0">&thorn;<#else>¨</#if></span></span></td>
+         </tr>
+         <tr>
+           <td height="40" colspan="2" width="20%"  align="center">检查情况评估</td>
+           <td width="80%" colspan="10" align="left" style="font-size:15px">粮情稳定，储存安全<span style='font-family:Wingdings;'><span><#if tfLiaqin.qiKuaPinGu == 0>&thorn;<#else>¨</#if></span></span>；&nbsp;&nbsp;粮情异常，急需妥善处理<span style='font-family:Wingdings;'><span><#if tfLiaqin.qiKuaPinGu == 1>&thorn;<#else>¨</#if></span></span></td>
+         </tr>
+         <tr>
+           <td height="40" colspan="2" width="20%"  align="center">检查性质</td>
+           <td width="80%" colspan="10" align="left" style="font-size:15px">上级单位检查<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaChaXinZhi?contains("SJDW")>&thorn;<#else>¨</#if></span></span>；&nbsp;月普查<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaChaXinZhi?contains("YPC")>&thorn;<#else>¨</#if></span></span>；&nbsp;季鉴定<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaChaXinZhi?contains("JJD")>&thorn;<#else>¨</#if></span></span>；&nbsp;保管员自查<span style='font-family:Wingdings;'><span><#if tfLiaqin.jiaChaXinZhi?contains("ZC")>&thorn;<#else>¨</#if></span></span></td>
+         </tr>
+         <tr>
+           <td height="40" colspan="2" width="20%"  align="center">备注</td>
+           <td width="80%" colspan="10" align="left">&nbsp;${tfLiaqin.beiZhu}</td>
+         </tr>
+         </table>
+ </div>
+ <div class="tab_out">
+   <table align=center   style="border-collapse:collapse; width:551.5000pt; margin-left:201.0000pt; padding:0.0000pt 0.0000pt 0.0000pt 0.0000pt ; ">
+   <tr>
+     <td height="40" width="30%" align="left">检查负责人：</td>
+     <td  width="30%">检查人员：${user.realName!}</td>
+     <td  width="30%" >保管员：${user.realName!}</td> 
+   </tr>
+   </table> 
+ </div>
+</body>
+</html>

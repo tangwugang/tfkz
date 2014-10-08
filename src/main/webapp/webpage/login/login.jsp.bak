@@ -1,0 +1,67 @@
+<%@page import="java.util.Properties"%>
+<%@page import="org.takinframework.core.util.ApplicationContextUtil"%>
+<%@ page pageEncoding="UTF-8"%>
+<%@include file="/context/mytags.jsp"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>${fns:getSysName('productName')}</title>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=EmulateIE8" />
+<link rel="stylesheet" type="text/css" href="${ctx}/plug-in/login/css/login.css"></link>
+<%
+	Properties configProperties = (Properties) ApplicationContextUtil
+			.getBean("configProperties");
+	String validCodeEnabled = configProperties
+			.getProperty("validCodeEnabled");
+%>
+</head>
+<body>
+	<form id="form-login" action="loginController.do?login"
+		check="loginController.do?checkuser" method="post">
+		<center>
+			<div class="main_login">
+				<span class="bpmlogo_login"></span>
+				<div class="content_login">
+					<div class="column">
+						<span>用户名:</span><br> <input type="text" name="userName"
+							iscookie="true" class="login" nullmsg="请输入用户名!" /><br>
+					</div>
+					<div class="column">
+						<span>密&nbsp;&nbsp;码:</span><br> <input type="password"
+							name="password" nullmsg="请输入密码!"/>
+					</div>
+					<%
+						if (validCodeEnabled != null && "true".equals(validCodeEnabled)) {
+					%>
+					<div class="vcode column">
+						<div>
+							<span>验证码:</span><br> <input type="text" name="validCode" />
+						</div>
+						<div class="vcode_img">
+							<img id="validImg" src="${ctx}/servlet/ValidCode" /><br> <a
+								onclick="reload()">看不清，换一张</a>
+						</div>
+
+					</div>
+					<%
+						}
+					%>
+					<div class="confirm">
+						<input type="checkbox" name="remember_me" value="1" /><span>系统记住我</span><a
+							class="reset_btn btn r"
+							onclick="document.getElementById('form-login').reset();">重置</a>
+							<a class="login_btn btn r">登录</a>
+					</div>
+					<div id="alertMessage"></div>
+				</div>
+			</div>
+			<div class="copy">&copy;版权所有</div>
+		</center>
+	</form>
+<script type="text/javascript" src="${ctx}/plug-in/jquery/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" src="${ctx}/plug-in/jquery/jquery.cookie.js"></script>
+<script type="text/javascript" src="${ctx}/plug-in/login/js/login.js"></script>
+<script type="text/javascript" src="plug-in/lhgDialog/lhgdialog.min.js"></script>
+</body>
+</html>

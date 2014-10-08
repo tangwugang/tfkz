@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+            http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+            http://www.springframework.org/schema/context
+            http://www.springframework.org/schema/context/spring-context-3.0.xsd
+            http://www.springframework.org/schema/aop  
+            http://www.springframework.org/schema/aop/spring-aop-3.0.xsd">
+	<aop:aspectj-autoproxy />
+	<context:component-scan base-package="org.takinframework.core.interceptors" />
+	<aop:config>
+		<!-- 对象持久化和更新时注入属性值 -->
+		<aop:aspect id="prePersistAspect" ref="injectionPropertyAspect">
+			<aop:before method="beforePrePersist" pointcut-ref="prePersist"/>
+			<aop:before method="beforePreUpdate" pointcut-ref="preUpdate" />
+			<aop:pointcut expression="execution (* org.takinframework.core.common.dao.impl..save*(..))||
+ 			execution (* org.takinframework.web.*.service.impl..insert*(..))" id="prePersist" />
+			<aop:pointcut expression="execution (* org.takinframework.web.*.service.impl..update*(..))" id="preUpdate" />
+		</aop:aspect>
+		<!-- 动态数据源切换 -->
+		<aop:aspect id="dataSourceAspect" ref="dynamicDataSourceAspect">
+			<aop:before method="beforeDynamicDataSource" pointcut-ref="dynamicDataSource"/>
+			<aop:after method="afterDynamicDataSource" pointcut-ref="dynamicDataSource"/>
+			<aop:pointcut expression="execution (* org.takinframework.web.*.service.impl..find*(..))" id="dynamicDataSource"/>
+		</aop:aspect>
+	</aop:config>
+	
+	<!-- 配置eh缓存管理器 -->
+	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean"/>
+	<!-- 配置一个简单的缓存工厂bean对象 -->
+	<bean id="simpleCache" class="org.springframework.cache.ehcache.EhCacheFactoryBean">
+	    <property name="cacheManager" ref="cacheManager" />
+	    <!-- 使用缓存 关联ehcache.xml中的缓存配置 -->
+	    <property name="cacheName" value="eternalCache" />
+	</bean>
+	<!-- 配置一个缓存拦截器对象，处理具体的缓存业务 -->
+	<bean id="methodCacheInterceptor" class="org.takinframework.core.interceptors.MethodCacheInterceptor">
+	    <property name="cache" ref="simpleCache"/>
+	</bean>
+	<!-- 配置一个缓存拦截器对象，清除缓存(如create、insert、save、update、delete后)-->
+	<bean id="methodCacheAfterAdvice" class="org.takinframework.core.interceptors.MethodCacheAfterAdvice">
+	    <property name="cache" ref="simpleCache"/>
+	</bean>
+	
+	<!-- 参与缓存的切入点对象 (切入点对象，确定何时何地调用拦截器) -->
+	<bean id="methodCachePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	    <!-- 配置缓存aop切面 -->
+	    <property name="advice" ref="methodCacheInterceptor" />
+	    <!-- 配置哪些方法参与缓存策略 -->
+	    <!--  
+	        .表示符合任何单一字元                  
+	        ###  +表示符合前一个字元一次或多次                  
+	        ###  *表示符合前一个字元零次或多次                  
+	        ###  \Escape任何Regular expression使用到的符号                  
+	    -->                 
+	    <!-- .*表示前面的前缀(包括包名) 表示getDBType方法-->
+	    <property name="patterns">
+	        <list>
+            	<value>org.takinframework.core.common.dao.impl.*get.*</value>
+	        </list>
+	    </property>
+	</bean>
+	
+	
+	<!-- 参与缓存的切入点对象 (切入点对象，确定何时何地调用拦截器) -->
+	<bean id="methodCacheAdvicePointCut" class="org.springframework.aop.support.RegexpMethodPointcutAdvisor">
+	    <!-- 配置缓存aop切面 -->
+	    <property name="advice" ref="methodCacheAfterAdvice" />
+	    <!-- 配置哪些方法参与缓存策略 -->
+	    <!--  
+	        .表示符合任何单一字元                  
+	        ###  +表示符合前一个字元一次或多次                  
+	        ###  *表示符合前一个字元零次或多次                  
+	        ###  \Escape任何Regular expression使用到的符号                  
+	    -->                 
+	    <!-- .*表示前面的前缀(包括包名) 表示getDBType方法-->
+	    <property name="patterns">
+	        <list>
+	            <value>org.takinframework.core.common.dao.impl.*save.*</value>
+	            <value>org.takinframework.core.common.dao.impl.*Save.*</value>  
+          		<value>org.takinframework.core.common.dao.impl.*update.*</value>  
+          		<value>org.takinframework.core.common.dao.impl.*delete.*</value> 
+	        </list>
+	    </property>
+	</bean>
+	
+</beans>

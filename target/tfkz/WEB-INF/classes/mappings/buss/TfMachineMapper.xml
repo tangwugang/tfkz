@@ -1,0 +1,391 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.takinframework.web.buss.mapper.TfMachineMapper" > 
+<!-- Result Map-->
+<resultMap id="BaseResultMap" type="org.takinframework.web.buss.entity.TfMachine" >
+	<result column="id" property="id"/>
+	<result column="createBy" property="createBy"/>
+	<result column="createName" property="createName"/>
+	<result column="createDate" property="createDate"/>
+	<result column="updateDate" property="updateDate"/>
+	<result column="updateBy" property="updateBy"/>
+	<result column="updateName" property="updateName"/>
+	<result column="duiLianGaoDu" property="duiLianGaoDu"/>
+	<result column="lianDuiVol" property="lianDuiVol"/>
+	<result column="fenJiGonLu" property="fenJiGonLu"/>
+	<result column="fenJiNum" property="fenJiNum"/>
+	<result column="zonFenLia" property="zonFenLia"/>
+	<result column="fenWanBuZhi" property="fenWanBuZhi"/>
+	<result column="fenDaoNum" property="fenDaoNum"/>
+	<result column="fenDaoStep" property="fenDaoStep"/>
+	<result column="unitTonFenVol" property="unitTonFenVol"/>
+	<result column="konQiTuJinBi" property="konQiTuJinBi"/>
+	<result column="zTonFenTime" property="zTonFenTime"/>
+	<result column="stTonFenTime" property="stTonFenTime"/>
+	<result column="enTonFenTime" property="enTonFenTime"/>
+	<result column="daQiWenDuHi" property="daQiWenDuHi"/>
+	<result column="daQiWenDuLo" property="daQiWenDuLo"/>
+	<result column="daQiWenDuAv" property="daQiWenDuAv"/>
+	<result column="daQiShiDuHi" property="daQiShiDuHi"/>
+	<result column="daQiShiDuLo" property="daQiShiDuLo"/>
+	<result column="daQiShiDuAv" property="daQiShiDuAv"/>
+	<result column="liaWenStartHi" property="liaWenStartHi"/>
+	<result column="liaWenStartLo" property="liaWenStartLo"/>
+	<result column="liaWenStartAv" property="liaWenStartAv"/>
+	<result column="liaWenEndHi" property="liaWenEndHi"/>
+	<result column="liaWenEndLo" property="liaWenEndLo"/>
+	<result column="liaWenEndAv" property="liaWenEndAv"/>
+	<result column="suiFenStartHi" property="suiFenStartHi"/>
+	<result column="suiFenStartLo" property="suiFenStartLo"/>
+	<result column="suiFenStartAv" property="suiFenStartAv"/>
+	<result column="suiFenEndHi" property="suiFenEndHi"/>
+	<result column="suiFenEndLo" property="suiFenEndLo"/>
+	<result column="suiFenEndAv" property="suiFenEndAv"/>
+	<result column="power" property="power"/>
+	<result column="unitPower" property="unitPower"/>
+	<result column="beiZhui" property="beiZhui"/>
+</resultMap>
+       
+<!-- tf_machine table all fields -->
+<sql id="Base_Column_List" >
+	 id,createBy,createName,createDate,updateDate,updateBy,updateName,duiLianGaoDu,lianDuiVol,fenJiGonLu,fenJiNum,zonFenLia,fenWanBuZhi,fenDaoNum,fenDaoStep,unitTonFenVol,konQiTuJinBi,zTonFenTime,stTonFenTime,enTonFenTime,daQiWenDuHi,daQiWenDuLo,daQiWenDuAv,daQiShiDuHi,daQiShiDuLo,daQiShiDuAv,liaWenStartHi,liaWenStartLo,liaWenStartAv,liaWenEndHi,liaWenEndLo,liaWenEndAv,suiFenStartHi,suiFenStartLo,suiFenStartAv,suiFenEndHi,suiFenEndLo,suiFenEndAv,power,unitPower,beiZhui
+</sql>
+   
+   
+<!-- 查询条件 -->
+<sql id="Example_Where_Clause">
+	where 1=1
+ 	<trim  suffixOverrides="and|or" >
+	<if test="createBy != null  and createBy != '' ">
+		 and createBy=#{createBy}
+	</if>
+	<if test="createName != null  and createName != '' ">
+		 and createName=#{createName}
+	</if>
+	<if test="createDate != null  ">
+		 and createDate=#{createDate}
+	</if>
+	<if test="updateDate != null  ">
+		 and updateDate=#{updateDate}
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		 and updateBy=#{updateBy}
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		 and updateName=#{updateName}
+	</if>
+	<if test="duiLianGaoDu != null  ">
+		 and duiLianGaoDu=#{duiLianGaoDu}
+	</if>
+	<if test="lianDuiVol != null  ">
+		 and lianDuiVol=#{lianDuiVol}
+	</if>
+	<if test="fenJiGonLu != null  ">
+		 and fenJiGonLu=#{fenJiGonLu}
+	</if>
+	<if test="fenJiNum != null  ">
+		 and fenJiNum=#{fenJiNum}
+	</if>
+	<if test="zonFenLia != null  ">
+		 and zonFenLia=#{zonFenLia}
+	</if>
+	<if test="fenWanBuZhi != null  and fenWanBuZhi != '' ">
+		 and fenWanBuZhi=#{fenWanBuZhi}
+	</if>
+	<if test="fenDaoNum != null  ">
+		 and fenDaoNum=#{fenDaoNum}
+	</if>
+	<if test="fenDaoStep != null  ">
+		 and fenDaoStep=#{fenDaoStep}
+	</if>
+	<if test="unitTonFenVol != null  ">
+		 and unitTonFenVol=#{unitTonFenVol}
+	</if>
+	<if test="konQiTuJinBi != null  ">
+		 and konQiTuJinBi=#{konQiTuJinBi}
+	</if>
+	<if test="zTonFenTime != null  ">
+		 and zTonFenTime=#{zTonFenTime}
+	</if>
+	<if test="stTonFenTime != null  and stTonFenTime != '' ">
+		 and stTonFenTime=#{stTonFenTime}
+	</if>
+	<if test="enTonFenTime != null  and enTonFenTime != '' ">
+		 and enTonFenTime=#{enTonFenTime}
+	</if>
+	<if test="daQiWenDuHi != null  ">
+		 and daQiWenDuHi=#{daQiWenDuHi}
+	</if>
+	<if test="daQiWenDuLo != null  ">
+		 and daQiWenDuLo=#{daQiWenDuLo}
+	</if>
+	<if test="daQiWenDuAv != null  ">
+		 and daQiWenDuAv=#{daQiWenDuAv}
+	</if>
+	<if test="daQiShiDuHi != null  ">
+		 and daQiShiDuHi=#{daQiShiDuHi}
+	</if>
+	<if test="daQiShiDuLo != null  ">
+		 and daQiShiDuLo=#{daQiShiDuLo}
+	</if>
+	<if test="daQiShiDuAv != null  ">
+		 and daQiShiDuAv=#{daQiShiDuAv}
+	</if>
+	<if test="liaWenStartHi != null  ">
+		 and liaWenStartHi=#{liaWenStartHi}
+	</if>
+	<if test="liaWenStartLo != null  ">
+		 and liaWenStartLo=#{liaWenStartLo}
+	</if>
+	<if test="liaWenStartAv != null  ">
+		 and liaWenStartAv=#{liaWenStartAv}
+	</if>
+	<if test="liaWenEndHi != null  ">
+		 and liaWenEndHi=#{liaWenEndHi}
+	</if>
+	<if test="liaWenEndLo != null  ">
+		 and liaWenEndLo=#{liaWenEndLo}
+	</if>
+	<if test="liaWenEndAv != null  ">
+		 and liaWenEndAv=#{liaWenEndAv}
+	</if>
+	<if test="suiFenStartHi != null  ">
+		 and suiFenStartHi=#{suiFenStartHi}
+	</if>
+	<if test="suiFenStartLo != null  ">
+		 and suiFenStartLo=#{suiFenStartLo}
+	</if>
+	<if test="suiFenStartAv != null  ">
+		 and suiFenStartAv=#{suiFenStartAv}
+	</if>
+	<if test="suiFenEndHi != null  ">
+		 and suiFenEndHi=#{suiFenEndHi}
+	</if>
+	<if test="suiFenEndLo != null  ">
+		 and suiFenEndLo=#{suiFenEndLo}
+	</if>
+	<if test="suiFenEndAv != null  ">
+		 and suiFenEndAv=#{suiFenEndAv}
+	</if>
+	<if test="power != null  ">
+		 and power=#{power}
+	</if>
+	<if test="unitPower != null  ">
+		 and unitPower=#{unitPower}
+	</if>
+	<if test="beiZhui != null  and beiZhui != '' ">
+		 and beiZhui=#{beiZhui}
+	</if>
+	</trim>
+</sql>
+
+<!-- 检测是否存在 -->   
+<select id="checkEntityExits"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from tf_machine
+	 <include refid="Example_Where_Clause"/>
+</select>
+   
+
+<!-- 插入记录 -->
+<insert id="insert" parameterType="Object" >
+  insert into tf_machine(id,createBy,createName,createDate,updateDate,updateBy,updateName,duiLianGaoDu,lianDuiVol,fenJiGonLu,fenJiNum,zonFenLia,fenWanBuZhi,fenDaoNum,fenDaoStep,unitTonFenVol,konQiTuJinBi,zTonFenTime,stTonFenTime,enTonFenTime,daQiWenDuHi,daQiWenDuLo,daQiWenDuAv,daQiShiDuHi,daQiShiDuLo,daQiShiDuAv,liaWenStartHi,liaWenStartLo,liaWenStartAv,liaWenEndHi,liaWenEndLo,liaWenEndAv,suiFenStartHi,suiFenStartLo,suiFenStartAv,suiFenEndHi,suiFenEndLo,suiFenEndAv,power,unitPower,beiZhui)
+ values(#{id},#{createBy},#{createName},now(),now(),#{updateBy},#{updateName},#{duiLianGaoDu},#{lianDuiVol},#{fenJiGonLu},#{fenJiNum},#{zonFenLia},#{fenWanBuZhi},#{fenDaoNum},#{fenDaoStep},#{unitTonFenVol},#{konQiTuJinBi},#{zTonFenTime},#{stTonFenTime},#{enTonFenTime},#{daQiWenDuHi},#{daQiWenDuLo},#{daQiWenDuAv},#{daQiShiDuHi},#{daQiShiDuLo},#{daQiShiDuAv},#{liaWenStartHi},#{liaWenStartLo},#{liaWenStartAv},#{liaWenEndHi},#{liaWenEndLo},#{liaWenEndAv},#{suiFenStartHi},#{suiFenStartLo},#{suiFenStartAv},#{suiFenEndHi},#{suiFenEndLo},#{suiFenEndAv},#{power},#{unitPower},#{beiZhui})
+</insert>
+
+<!-- 根据id，修改记录-->  
+ <update id="update" parameterType="Object" >
+  update tf_machine set createBy=#{createBy},createName=#{createName},createDate=#{createDate},updateDate=now(),updateBy=#{updateBy},updateName=#{updateName},duiLianGaoDu=#{duiLianGaoDu},lianDuiVol=#{lianDuiVol},fenJiGonLu=#{fenJiGonLu},fenJiNum=#{fenJiNum},zonFenLia=#{zonFenLia},fenWanBuZhi=#{fenWanBuZhi},fenDaoNum=#{fenDaoNum},fenDaoStep=#{fenDaoStep},unitTonFenVol=#{unitTonFenVol},konQiTuJinBi=#{konQiTuJinBi},zTonFenTime=#{zTonFenTime},stTonFenTime=#{stTonFenTime},enTonFenTime=#{enTonFenTime},daQiWenDuHi=#{daQiWenDuHi},daQiWenDuLo=#{daQiWenDuLo},daQiWenDuAv=#{daQiWenDuAv},daQiShiDuHi=#{daQiShiDuHi},daQiShiDuLo=#{daQiShiDuLo},daQiShiDuAv=#{daQiShiDuAv},liaWenStartHi=#{liaWenStartHi},liaWenStartLo=#{liaWenStartLo},liaWenStartAv=#{liaWenStartAv},liaWenEndHi=#{liaWenEndHi},liaWenEndLo=#{liaWenEndLo},liaWenEndAv=#{liaWenEndAv},suiFenStartHi=#{suiFenStartHi},suiFenStartLo=#{suiFenStartLo},suiFenStartAv=#{suiFenStartAv},suiFenEndHi=#{suiFenEndHi},suiFenEndLo=#{suiFenEndLo},suiFenEndAv=#{suiFenEndAv},power=#{power},unitPower=#{unitPower},beiZhui=#{beiZhui} where id=#{id}
+ </update>
+ 
+ <!-- 修改记录，只修改只不为空的字段 -->
+<update id="updateBySelective" parameterType="Object" >
+	update tf_machine set 
+	<trim  suffixOverrides="," >
+	<if test="createBy != null  and createBy != '' ">
+		createBy=#{createBy},
+	</if>
+	<if test="createName != null  and createName != '' ">
+		createName=#{createName},
+	</if>
+	<if test="createDate != null  ">
+		createDate=#{createDate},
+	</if>
+	<if test="updateDate != null  ">
+		updateDate=#{updateDate},
+	</if>
+	<if test="updateBy != null  and updateBy != '' ">
+		updateBy=#{updateBy},
+	</if>
+	<if test="updateName != null  and updateName != '' ">
+		updateName=#{updateName},
+	</if>
+	<if test="duiLianGaoDu != null  ">
+		duiLianGaoDu=#{duiLianGaoDu},
+	</if>
+	<if test="lianDuiVol != null  ">
+		lianDuiVol=#{lianDuiVol},
+	</if>
+	<if test="fenJiGonLu != null  ">
+		fenJiGonLu=#{fenJiGonLu},
+	</if>
+	<if test="fenJiNum != null  ">
+		fenJiNum=#{fenJiNum},
+	</if>
+	<if test="zonFenLia != null  ">
+		zonFenLia=#{zonFenLia},
+	</if>
+	<if test="fenWanBuZhi != null  and fenWanBuZhi != '' ">
+		fenWanBuZhi=#{fenWanBuZhi},
+	</if>
+	<if test="fenDaoNum != null  ">
+		fenDaoNum=#{fenDaoNum},
+	</if>
+	<if test="fenDaoStep != null  ">
+		fenDaoStep=#{fenDaoStep},
+	</if>
+	<if test="unitTonFenVol != null  ">
+		unitTonFenVol=#{unitTonFenVol},
+	</if>
+	<if test="konQiTuJinBi != null  ">
+		konQiTuJinBi=#{konQiTuJinBi},
+	</if>
+	<if test="zTonFenTime != null  ">
+		zTonFenTime=#{zTonFenTime},
+	</if>
+	<if test="stTonFenTime != null  and stTonFenTime != '' ">
+		stTonFenTime=#{stTonFenTime},
+	</if>
+	<if test="enTonFenTime != null  and enTonFenTime != '' ">
+		enTonFenTime=#{enTonFenTime},
+	</if>
+	<if test="daQiWenDuHi != null  ">
+		daQiWenDuHi=#{daQiWenDuHi},
+	</if>
+	<if test="daQiWenDuLo != null  ">
+		daQiWenDuLo=#{daQiWenDuLo},
+	</if>
+	<if test="daQiWenDuAv != null  ">
+		daQiWenDuAv=#{daQiWenDuAv},
+	</if>
+	<if test="daQiShiDuHi != null  ">
+		daQiShiDuHi=#{daQiShiDuHi},
+	</if>
+	<if test="daQiShiDuLo != null  ">
+		daQiShiDuLo=#{daQiShiDuLo},
+	</if>
+	<if test="daQiShiDuAv != null  ">
+		daQiShiDuAv=#{daQiShiDuAv},
+	</if>
+	<if test="liaWenStartHi != null  ">
+		liaWenStartHi=#{liaWenStartHi},
+	</if>
+	<if test="liaWenStartLo != null  ">
+		liaWenStartLo=#{liaWenStartLo},
+	</if>
+	<if test="liaWenStartAv != null  ">
+		liaWenStartAv=#{liaWenStartAv},
+	</if>
+	<if test="liaWenEndHi != null  ">
+		liaWenEndHi=#{liaWenEndHi},
+	</if>
+	<if test="liaWenEndLo != null  ">
+		liaWenEndLo=#{liaWenEndLo},
+	</if>
+	<if test="liaWenEndAv != null  ">
+		liaWenEndAv=#{liaWenEndAv},
+	</if>
+	<if test="suiFenStartHi != null  ">
+		suiFenStartHi=#{suiFenStartHi},
+	</if>
+	<if test="suiFenStartLo != null  ">
+		suiFenStartLo=#{suiFenStartLo},
+	</if>
+	<if test="suiFenStartAv != null  ">
+		suiFenStartAv=#{suiFenStartAv},
+	</if>
+	<if test="suiFenEndHi != null  ">
+		suiFenEndHi=#{suiFenEndHi},
+	</if>
+	<if test="suiFenEndLo != null  ">
+		suiFenEndLo=#{suiFenEndLo},
+	</if>
+	<if test="suiFenEndAv != null  ">
+		suiFenEndAv=#{suiFenEndAv},
+	</if>
+	<if test="power != null  ">
+		power=#{power},
+	</if>
+	<if test="unitPower != null  ">
+		unitPower=#{unitPower},
+	</if>
+	<if test="beiZhui != null  and beiZhui != '' ">
+		beiZhui=#{beiZhui},
+	</if>
+	</trim> where id=#{id}
+</update>
+
+<!-- 删除记录 -->
+<delete id="deleteById" parameterType="Object">
+	delete 	 from tf_machine where id = #{id}
+</delete>
+
+<!-- 删除记录 -->
+<delete id="delete" parameterType="Object">
+	delete 	 from tf_machine 
+	<include refid="Example_Where_Clause"/>
+</delete>
+ 
+<!-- 根据id查询 tf_machine -->
+<select id="selectById"  resultMap="BaseResultMap" parameterType="Object">
+	select <include refid="Base_Column_List" /> 
+	 from tf_machine where id = #{id}
+</select>
+
+<!-- sys_user 列表总数-->
+<select id="selectByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from tf_machine 
+	<include refid="Example_Where_Clause"/>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_machine 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+
+<!-- 查询sys_user列表 -->
+<select id="selectAll" resultMap="BaseResultMap">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_machine
+</select>
+
+<!-- tf_machine 列表总数-->
+<select id="queryByCount" resultType="java.lang.Integer"  parameterType="Object">
+	select count(1) from tf_machine 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+<!-- 查询tf_machine列表 -->
+<select id="queryByList" resultMap="BaseResultMap"  parameterType="Object">
+	select 
+	<include refid="Base_Column_List"/>
+	from tf_machine 
+	<include refid="Example_Where_Clause"/>
+	<if test="page.orderBy != null and page.orderBy != ''" >
+		order by ${page.orderBy}
+    </if>
+</select>
+  	
+</mapper>   

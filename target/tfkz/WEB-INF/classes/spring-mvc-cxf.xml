@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:jaxws="http://cxf.apache.org/jaxws" xmlns:jaxrs="http://cxf.apache.org/jaxrs"
+	xmlns:cxf="http://cxf.apache.org/core" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://cxf.apache.org/core 
+	http://cxf.apache.org/schemas/core.xsd 
+	http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://cxf.apache.org/jaxws http://cxf.apache.org/schemas/jaxws.xsd
+	http://cxf.apache.org/jaxrs http://cxf.apache.org/schemas/jaxrs.xsd">
+	<!-- 使用annotation 自动注册bean, 并保证@Required、@Autowired的属性被注入 -->
+	<context:component-scan base-package="org.takinframework.web.*" />
+
+	<import resource="classpath:META-INF/cxf/cxf.xml" />
+	<import resource="classpath:META-INF/cxf/cxf-extension-soap.xml"/>
+	<import resource="classpath:META-INF/cxf/cxf-extension-jaxrs-binding.xml"/>
+	<import resource="classpath:META-INF/cxf/cxf-servlet.xml" />
+
+
+<!-- 	<bean id="sysUserDetailServiceImpl" -->
+<!-- 		class="org.takinframework.web.webservice.impl.SysUserDetailServiceImpl" /> -->
+
+	<jaxws:endpoint id="jwebDepotDetailServiceWs" 
+		implementorClass="org.takinframework.web.webservice.impl.JwebDepotDetailServiceImpl"
+		address="/depotInfoWs">
+	</jaxws:endpoint>
+
+	<jaxrs:server id="sysUserDetailService" address="/userInfo" >
+		<jaxrs:serviceBeans>
+			<ref bean="sysUserDetailServiceImpl"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+        <entry key="json" value="application/json" />
+        <entry key="xml" value="application/xml" />
+	    </jaxrs:extensionMappings>
+	    <jaxrs:languageMappings>
+	           <entry key="en" value="en-gb"/>  
+	    </jaxrs:languageMappings>
+	</jaxrs:server>
+	
+	<jaxrs:server id="jwebDepotDetailService" address="/depotInfo" >
+		<jaxrs:serviceBeans>
+			<ref bean="jwebDepotDetailServiceImpl"/>
+		</jaxrs:serviceBeans>
+		<jaxrs:extensionMappings>
+        <entry key="json" value="application/json" />
+        <entry key="xml" value="application/xml" />
+	    </jaxrs:extensionMappings>
+	    <jaxrs:languageMappings>
+	           <entry key="en" value="en-gb"/>  
+	    </jaxrs:languageMappings>
+	</jaxrs:server>
+</beans>
